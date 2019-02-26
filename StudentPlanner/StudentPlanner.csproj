@@ -69,8 +69,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AssignmentTask.cs" />
+    <Compile Include="Models\Day.cs" />
+    <Compile Include="Models\EventTask.cs" />
+    <Compile Include="Models\ExamTask.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\PaymentTask.cs" />
     <Compile Include="Models\Planner.cs" />
+    <Compile Include="Models\Task.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Week.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
