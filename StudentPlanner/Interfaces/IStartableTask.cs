@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Interfaces {
     interface IStartableTask {
-        DateTime StartedDatetime { get; set; }
+        DateTime StartedDatetime { get; }
 
         Status StartTask();
     }

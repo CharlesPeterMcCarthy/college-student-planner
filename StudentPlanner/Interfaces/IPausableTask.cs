@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Interfaces {
     interface IPausableTask {
-        DateTime PausedDatetime { get; set; }
+        DateTime PausedDatetime { get; }
 
         Status PauseTask();
     }

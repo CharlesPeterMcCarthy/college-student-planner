@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class PaymentTask {
+    class PaymentTask : Task {
         //properties
         public decimal Amount { get; set; }
 
