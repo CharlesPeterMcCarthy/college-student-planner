@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     class ExamTask {
+        //properties
+        public string[] MaterialsNeeded { get; set; }
 
-    }
+    }//end of exam class
 }
