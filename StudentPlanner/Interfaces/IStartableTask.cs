@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Interfaces {
     interface IStartableTask {
+        DateTime StartedDatetime { get; set; }
 
+        void StartTask();
     }
 }
