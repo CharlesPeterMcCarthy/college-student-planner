@@ -8,9 +8,9 @@ namespace StudentPlanner.Models {
     class Day {
 
         //properties
-        public string DayOfWeek { get; set; }
-        public DateTime Date { get; set; }
-        public Task[] Tasks { get; set; }
+        public string DayOfWeek { get; private set; }
+        public DateTime Date { get; private set; }
+        public List<Task> Tasks { get; private set; }
 
     }//end of the Day Class
 }

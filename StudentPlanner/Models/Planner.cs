@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     class Planner {
         //properties
-        public Week[] Weeks { get; set; }
+        public List<Week> Weeks { get; private set; }
     }//end of the Planner Class
 }
