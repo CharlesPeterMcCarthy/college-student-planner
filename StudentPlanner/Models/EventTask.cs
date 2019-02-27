@@ -12,6 +12,7 @@ namespace StudentPlanner.Models {
         public DateTime StartedDatetime { get; private set; }
         public DateTime PausedDatetime { get; private set; }
 
+        //methods
         public Status PauseTask() {
             Status = Status.Paused;
             PausedDatetime = DateTime.Now;
@@ -25,5 +26,11 @@ namespace StudentPlanner.Models {
 
             return Status;
         }
+
+        public void UpdateLocation(string location)
+        {
+            Location = location;
+        }//end of update location methods
+
     }//end of event class
 }

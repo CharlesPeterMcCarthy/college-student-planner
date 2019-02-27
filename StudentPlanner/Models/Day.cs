@@ -12,5 +12,11 @@ namespace StudentPlanner.Models {
         public DateTime Date { get; private set; }
         public List<Task> Tasks { get; private set; }
 
+        //methods
+        public void AddTask(Task task)
+        {
+            Tasks.Add(task);
+        }//end of the method AddTask
+
     }//end of the Day Class
 }
