@@ -13,5 +13,15 @@ namespace StudentPlanner.Models {
         public DateTime DOB { get; private set; }
         public Planner Planner { get; private set; }
 
+        public User(string studentID, string name, DateTime dob, Planner planner) : this(studentID, name, dob) {
+            Planner = planner;
+        }
+
+        public User(string studentID, string name, DateTime dob) {
+            StudentID = studentID;
+            Name = name;
+            DOB = dob;
+        }
+
     }//end of the user class
 }

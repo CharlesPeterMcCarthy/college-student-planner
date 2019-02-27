@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     class Planner {
         //properties
-        public List<Week> Weeks { get; private set; }
+        public List<Week> Weeks { get; private set; } = new List<Week>();
+
+        public Planner() { }
+
+        public Planner(List<Week> weeks) {
+            Weeks = weeks;
+        }
 
         //methods
-        public void AddWeek( Week week )
+        public void AddWeek(Week week)
         {
             Weeks.Add(week);
         }//end of the AddWeek Method
