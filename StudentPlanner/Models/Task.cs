@@ -29,6 +29,23 @@ namespace StudentPlanner.Models {
         public DateTime CreatedDatetime { get; private set; }
         public DateTime CompleteDatetime { get; private set; }
 
+        public Task(
+            string title, string description, Priority priority,
+            Status status, DateTime dueDatetime, DateTime createdDatetime
+        ) : this(title, description, priority, dueDatetime, createdDatetime) {
+            Status = status;
+        }
+
+        public Task(string title, string description, Priority priority, DateTime dueDatetime, DateTime createdDatetime) {
+            Title = title;
+            Description = description;
+            Priority = priority;
+            DueDatetime = dueDatetime;
+            CreatedDatetime = createdDatetime;
+
+            Status = Status.NotStarted;
+        }
+
         public void UpdatePriority(Priority priority) {
             Priority = priority;
         }

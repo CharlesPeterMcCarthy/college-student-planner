@@ -8,15 +8,26 @@ namespace StudentPlanner.Models {
     class Day {
 
         //properties
-        public string DayOfWeek { get; private set; }
+        public DayOfWeek DayOfWeek { get; private set; }
         public DateTime Date { get; private set; }
         public List<Task> Tasks { get; private set; }
 
-        //methods
-        public void AddTask(Task task)
-        {
+        public Day(DateTime date, List<Task> tasks) : this(date) {
+            Tasks = tasks;
+        }
+
+        public Day(DateTime date) {
+            Date = date;
+            SetDayOfWeek();
+        }
+
+        public void AddTask(Task task) {
             Tasks.Add(task);
-        }//end of the method AddTask
+        }
+
+        private void SetDayOfWeek() {
+            DayOfWeek = Date.DayOfWeek;
+        }
 
     }//end of the Day Class
 }

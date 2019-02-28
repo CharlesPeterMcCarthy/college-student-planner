@@ -11,6 +11,17 @@ namespace StudentPlanner.Models {
         public List<string> MaterialsNeeded { get; private set; }
         public DateTime StartedDatetime { get; private set; }
 
+        public ExamTask(
+            string title, string description, Priority priority, Status status,
+            DateTime dueDatetime, DateTime createdDatetime, 
+            List<string> materialsNeeded, DateTime startedDatetime
+        ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
+            MaterialsNeeded = materialsNeeded;
+            StartedDatetime = startedDatetime;
+        }
+
+        // More constructors will probably be needed
+
         //methods
         public Status StartTask() {
             Status = Status.Started;

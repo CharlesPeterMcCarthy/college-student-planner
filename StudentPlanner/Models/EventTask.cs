@@ -12,6 +12,18 @@ namespace StudentPlanner.Models {
         public DateTime StartedDatetime { get; private set; }
         public DateTime PausedDatetime { get; private set; }
 
+        public EventTask(
+            string title, string description, Priority priority, Status status,
+            DateTime dueDatetime, DateTime createdDatetime,
+            string location, DateTime startedDatetime, DateTime pausedDatetime
+        ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
+            Location = location;
+            StartedDatetime = startedDatetime;
+            PausedDatetime = pausedDatetime;
+        }
+
+        // More constructors will probably be needed
+
         //methods
         public Status PauseTask() {
             Status = Status.Paused;

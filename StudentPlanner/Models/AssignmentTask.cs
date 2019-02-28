@@ -13,6 +13,19 @@ namespace StudentPlanner.Models {
         public DateTime PausedDatetime { get; private set; }
         public DateTime StartedDatetime { get; private set; }
 
+        public AssignmentTask(
+            string title, string description, Priority priority, Status status, 
+            DateTime dueDatetime, DateTime createdDatetime, string subject, 
+            int percentageWorth, DateTime startedDatetime, DateTime pausedDatetime
+        ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
+            Subject = subject;
+            PercentageWorth = percentageWorth;
+            StartedDatetime = startedDatetime;
+            PausedDatetime = pausedDatetime;
+        }
+
+        // More constructors will probably be needed
+
         public Status PauseTask() {
             Status = Status.Paused;
             PausedDatetime = DateTime.Now;

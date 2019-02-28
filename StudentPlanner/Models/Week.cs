@@ -27,7 +27,7 @@ namespace StudentPlanner.Models {
         public void AddDay(Day day)
         {
             Days.Add(day);
-        }//end of the method AddDay
+        }
 
     }//end of the Week Class
 }

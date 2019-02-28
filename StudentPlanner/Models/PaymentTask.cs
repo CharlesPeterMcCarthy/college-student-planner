@@ -9,6 +9,15 @@ namespace StudentPlanner.Models {
         //properties
         public decimal Amount { get; private set; }
 
+        public PaymentTask(
+            string title, string description, Priority priority, Status status,
+            DateTime dueDatetime, DateTime createdDatetime, decimal amount
+        ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
+            Amount = amount;
+        }
+
+        // More constructors will probably be needed
+
         //methods
         public void UpdatePaymentAmount(decimal amount)
         {
