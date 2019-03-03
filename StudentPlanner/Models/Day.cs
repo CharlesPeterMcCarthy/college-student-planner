@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class Day {
+    public class Day {
 
         //properties
         public DayOfWeek DayOfWeek { get; private set; }

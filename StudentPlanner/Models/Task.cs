@@ -20,7 +20,7 @@ namespace StudentPlanner.Models {
         Cancelled
     }
 
-    abstract class Task {
+    public abstract class Task {
         public string Title { get; private set; }
         public string Description { get; private set; }
         public Priority Priority { get; private set; }

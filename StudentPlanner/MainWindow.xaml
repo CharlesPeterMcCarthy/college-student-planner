@@ -5,18 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentPlanner"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Student Planner" Height="450" Width="800"
+        Loaded="WindowLoaded"
+        >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="AUTO"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Name="stkpNav" Background="Gray" Grid.Column="0" HorizontalAlignment="Center">
+        <StackPanel Name="stkpNav" Background="Gray" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Grid.RowSpan="2">
             <TextBlock Name="tblkPlanner" Text="My Planner" Margin="10" MouseDown="TblkPlanner_MouseDown" />
             <TextBlock Name="tblkAdd" Text="Add Task" Margin="10" MouseDown="TblkAdd_MouseDown" />
         </StackPanel>
 
-        <Frame Name="mainFrame" Grid.Column="1" Source="MyPlanner.xaml" NavigationUIVisibility="Hidden" />
+        <StackPanel Background="Gray" Grid.Column="1" Grid.Row="0">
+            <TextBlock Name="tblkHeading" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Width="auto" />
+        </StackPanel>
+        <Frame Name="mainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

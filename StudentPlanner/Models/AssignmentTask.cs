@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class AssignmentTask : Task, IStartableTask, IPausableTask {
+    public class AssignmentTask : Task, IStartableTask, IPausableTask {
         //properties
         public string Subject { get; private set; }
         public int PercentageWorth { get; private set; }

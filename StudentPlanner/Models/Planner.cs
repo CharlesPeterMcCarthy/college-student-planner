@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class Planner {
+    public class Planner {
         //properties
         public List<Week> Weeks { get; private set; } = new List<Week>();
 

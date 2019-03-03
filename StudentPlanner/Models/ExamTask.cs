@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class ExamTask : Task, IStartableTask {
+    public class ExamTask : Task, IStartableTask {
         //properties
         public List<string> MaterialsNeeded { get; private set; }
         public DateTime StartedDatetime { get; private set; }

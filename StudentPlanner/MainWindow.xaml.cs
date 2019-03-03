@@ -18,17 +18,39 @@ namespace StudentPlanner
 {
     public partial class MainWindow : Window
     {
+        private User User { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private void WindowLoaded(object sender, RoutedEventArgs e) {
+            Database db = new Database();
+            User = db.GetUser();
+
+            MyPlanner mp = new MyPlanner(User.Planner);
+
+            SetheadingText("My Planner");
+            mainFrame.NavigationService.Navigate(mp);
+        }
+
         private void TblkPlanner_MouseDown(object sender, MouseButtonEventArgs e) {
-            mainFrame.NavigationService.Navigate(new Uri("MyPLanner.xaml", UriKind.Relative));
+            MyPlanner mp = new MyPlanner(User.Planner);
+
+            SetheadingText("My Planner");
+            mainFrame.NavigationService.Navigate(mp);
         }
 
         private void TblkAdd_MouseDown(object sender, MouseButtonEventArgs e) {
-            mainFrame.NavigationService.Navigate(new Uri("AddTask.xaml", UriKind.Relative));
+            AddTask at = new AddTask();
+
+            SetheadingText("Add Task");
+            mainFrame.NavigationService.Navigate(at);
+        }
+
+        private void SetheadingText(string heading) {
+            tblkHeading.Text = heading;
         }
     }
 }

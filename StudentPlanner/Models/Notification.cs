@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class Notification {
+    public class Notification {
         //properties
         public Task Task { get; private set; }
         public bool IsDismissed { get; private set; } = false;

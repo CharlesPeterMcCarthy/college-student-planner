@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddTask">
 
-    <Grid>
-        <Label Content="Add Task"></Label>
+    <Grid Background="White">
+        <Label Content="add task" HorizontalAlignment="Left" Margin="275,183,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>

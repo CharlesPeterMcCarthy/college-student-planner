@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,8 +19,15 @@ namespace StudentPlanner {
     /// Interaction logic for MyPlanner.xaml
     /// </summary>
     public partial class MyPlanner : Page {
+
+        public Planner Planner { get; set; }
+
         public MyPlanner() {
             InitializeComponent();
+        }
+
+        public MyPlanner(Planner p): this() {
+            Planner = p;
         }
     }
 }

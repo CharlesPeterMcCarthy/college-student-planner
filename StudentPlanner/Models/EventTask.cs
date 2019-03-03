@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class EventTask : Task, IStartableTask, IPausableTask {
+    public class EventTask : Task, IStartableTask, IPausableTask {
         //properties
         public string Location { get; private set; }
         public DateTime StartedDatetime { get; private set; }

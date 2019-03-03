@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class Week {
+    public class Week {
 
         //properties
         public int WeekNumber { get; private set; }

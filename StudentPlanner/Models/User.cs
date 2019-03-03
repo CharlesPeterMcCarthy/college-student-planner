@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    class User {
+    public class User {
 
         //properties
         public string StudentID { get; private set; }
