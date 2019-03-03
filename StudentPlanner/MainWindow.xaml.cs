@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,14 @@ namespace StudentPlanner
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void TblkPlanner_MouseDown(object sender, MouseButtonEventArgs e) {
+            mainFrame.NavigationService.Navigate(new Uri("MyPLanner.xaml", UriKind.Relative));
+        }
+
+        private void TblkAdd_MouseDown(object sender, MouseButtonEventArgs e) {
+            mainFrame.NavigationService.Navigate(new Uri("AddTask.xaml", UriKind.Relative));
         }
     }
 }

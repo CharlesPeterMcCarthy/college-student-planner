@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="AUTO"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Name="stkpNav" Background="Gray" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBlock Name="tblkPlanner" Text="My Planner" Margin="10" MouseDown="TblkPlanner_MouseDown" />
+            <TextBlock Name="tblkAdd" Text="Add Task" Margin="10" MouseDown="TblkAdd_MouseDown" />
+        </StackPanel>
+
+        <Frame Name="mainFrame" Grid.Column="1" Source="MyPlanner.xaml" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
