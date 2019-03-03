@@ -66,6 +66,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Database.cs" />
     <Compile Include="Interfaces\IPausableTask.cs" />
     <Compile Include="Interfaces\IStartableTask.cs" />
     <Compile Include="MainWindow.xaml.cs">
