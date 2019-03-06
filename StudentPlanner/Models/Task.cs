@@ -65,5 +65,9 @@ namespace StudentPlanner.Models {
         public void UpdateDueDatetime(DateTime dt) {
             DueDatetime = dt;
         }
+
+        public override string ToString() {
+            return Title;
+        }
     }
 }

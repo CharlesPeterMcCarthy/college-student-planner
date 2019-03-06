@@ -29,13 +29,24 @@ namespace StudentPlanner {
         public MyPlanner(Planner p): this() {
             Planner = p;
 
-            monList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Monday).Tasks;
-            tuesList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Tuesday).Tasks;
-            wedList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Wednesday).Tasks;
-            thurList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Thursday).Tasks;
-            friList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Friday).Tasks;
-            satList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Saturday).Tasks;
-            sunList.ItemsSource = p.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Sunday).Tasks;
+            DisplayThisWeeksTasks();
+        }
+
+        private void DisplayThisWeeksTasks() {
+            monList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Monday).Tasks;
+            tuesList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Tuesday).Tasks;
+            wedList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Wednesday).Tasks;
+            thurList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Thursday).Tasks;
+            friList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Friday).Tasks;
+            satList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Saturday).Tasks;
+            sunList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Sunday).Tasks;
+        }
+
+        private void SunList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            Console.WriteLine(((ListBox)sender).SelectedItem);
+
+            ViewTask vt = new ViewTask(((ListBox)sender).SelectedItem as Models.Task);
+            NavigationService.Navigate(vt);
         }
     }
 }
