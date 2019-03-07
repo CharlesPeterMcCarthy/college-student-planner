@@ -1,4 +1,5 @@
-﻿using StudentPlanner.Models;
+﻿using StudentPlanner.Interfaces;
+using StudentPlanner.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,12 +19,29 @@ namespace StudentPlanner {
     /// Interaction logic for ViewTask.xaml
     /// </summary>
     public partial class ViewTask : Page {
+
+        public Task Task { get; private set; }
+
         public ViewTask() {
             InitializeComponent();
         }
 
         public ViewTask(Task task): this() {
-            Console.WriteLine("TASK: " + task);
+            Task = task;
+            taskGrid.DataContext = Task;
+            content1.Content = Task;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            Task.CompleteTask();
+        }
+
+        private void StartTask(object sender, RoutedEventArgs e) {
+            ((IStartableTask)Task).StartTask();
+        }
+
+        private void PauseTask(object sender, RoutedEventArgs e) {
+            ((IPausableTask)Task).PauseTask();
         }
     }
 }

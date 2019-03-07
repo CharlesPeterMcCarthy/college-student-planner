@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,10 @@ namespace StudentPlanner.Models {
         //properties
         public DayOfWeek DayOfWeek { get; private set; }
         public DateTime Date { get; private set; }
-        public List<Task> Tasks { get; private set; }
+        public ObservableCollection<Task> Tasks { get; private set; }
 
         public Day(DateTime date, List<Task> tasks) : this(date) {
-            Tasks = tasks;
+            Tasks = new ObservableCollection<Task>(tasks);
         }
 
         public Day(DateTime date) {

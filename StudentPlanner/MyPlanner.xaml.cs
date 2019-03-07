@@ -42,9 +42,7 @@ namespace StudentPlanner {
             sunList.ItemsSource = Planner.Weeks[0].Days.Find(d => d.DayOfWeek == DayOfWeek.Sunday).Tasks;
         }
 
-        private void SunList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            Console.WriteLine(((ListBox)sender).SelectedItem);
-
+        private void DayList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             ViewTask vt = new ViewTask(((ListBox)sender).SelectedItem as Models.Task);
             NavigationService.Navigate(vt);
         }

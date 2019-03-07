@@ -16,6 +16,8 @@
                 <TextBlock Text="{Binding Path=DueDatetime, Mode=OneWay}"/>
                 <Label Content="Priority: " />
                 <TextBlock Text="{Binding Path=Priority, Mode=OneWay}"/>
+                <Label Content="Status: " />
+                <TextBlock Text="{Binding Path=Status, Mode=OneWay}"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -44,13 +46,13 @@
         <TextBlock Text="Saturday" Grid.Row="5" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
         <TextBlock Text="Sunday" Grid.Row="6" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
-        <ListBox Grid.Row="0" Grid.Column="1" Name="monList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
-        <ListBox Grid.Row="1" Grid.Column="1" Name="tuesList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
-        <ListBox Grid.Row="2" Grid.Column="1" Name="wedList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
-        <ListBox Grid.Row="3" Grid.Column="1" Name="thurList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
-        <ListBox Grid.Row="4" Grid.Column="1" Name="friList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
-        <ListBox Grid.Row="5" Grid.Column="1" Name="satList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
-        <ListBox Grid.Row="6" Grid.Column="1" Name="sunList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="SunList_SelectionChanged" />
+        <ListBox Grid.Row="0" Grid.Column="1" Name="monList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="1" Grid.Column="1" Name="tuesList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="2" Grid.Column="1" Name="wedList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="3" Grid.Column="1" Name="thurList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="4" Grid.Column="1" Name="friList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="5" Grid.Column="1" Name="satList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="6" Grid.Column="1" Name="sunList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
 
     </Grid>
 </Page>
