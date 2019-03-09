@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:StudentPlanner"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>
