@@ -58,7 +58,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ObjectToStringConverter.cs" />
     <Compile Include="ViewTask.xaml.cs">
       <DependentUpon>ViewTask.xaml</DependentUpon>
     </Compile>

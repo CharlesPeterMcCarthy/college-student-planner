@@ -26,7 +26,7 @@
             <TextBlock Name="tblkHeading" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Width="auto" />
         </StackPanel>
         <ScrollViewer Grid.Column="1" Grid.Row="1">
-            <Frame Name="mainFrame" NavigationUIVisibility="Hidden" />
+            <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Padding="10" />
         </ScrollViewer>
     </Grid>
 </Window>

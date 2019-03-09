@@ -37,11 +37,11 @@ namespace StudentPlanner {
         }
 
         private void StartTask(object sender, RoutedEventArgs e) {
-            ((IStartableTask)Task).StartTask();
+            if (Task is IStartableTask) ((IStartableTask) Task).StartTask();
         }
 
         private void PauseTask(object sender, RoutedEventArgs e) {
-            ((IPausableTask)Task).PauseTask();
+            if (Task is IPausableTask) ((IPausableTask) Task).PauseTask();
         }
     }
 }

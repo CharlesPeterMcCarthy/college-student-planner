@@ -11,13 +11,17 @@
     <Page.Resources>
         <DataTemplate x:Key="TaskTemplate">
             <StackPanel Name="task1" Background="LightGray">
-                <TextBlock Text="{Binding Path=Title, Mode=OneWay}"/>
+                <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontWeight="Bold" />
                 <TextBlock Text="{Binding Path=Description, Mode=OneWay}"/>
                 <TextBlock Text="{Binding Path=DueDatetime, Mode=OneWay}"/>
-                <Label Content="Priority: " />
-                <TextBlock Text="{Binding Path=Priority, Mode=OneWay}"/>
-                <Label Content="Status: " />
-                <TextBlock Text="{Binding Path=Status, Mode=OneWay}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Priority: " />
+                    <TextBlock Text="{Binding Path=Priority, Mode=OneWay}" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Status: " />
+                    <TextBlock Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" />
+                </StackPanel>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
