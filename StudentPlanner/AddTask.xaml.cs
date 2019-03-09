@@ -21,5 +21,45 @@ namespace StudentPlanner {
         public AddTask() {
             InitializeComponent();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //check what has been selected 
+            Console.WriteLine("Changed Selection");
+            string selected = ComboBox.SelectedValueProperty.ToString();
+
+            if (selected == "Assignment")
+            {
+                Assignment.Visibility = Visibility.Visible;
+                Event.Visibility = Visibility.Hidden;
+                Exam.Visibility = Visibility.Hidden;
+                Payment.Visibility = Visibility.Hidden;
+            }
+            else if (selected == "Event")
+            {
+                Event.Visibility = Visibility.Visible;
+                Assignment.Visibility = Visibility.Hidden;
+                Exam.Visibility = Visibility.Hidden;
+                Payment.Visibility = Visibility.Hidden;
+            }
+            else if (selected == "Exam")
+            {
+                Exam.Visibility = Visibility.Visible;
+                Assignment.Visibility = Visibility.Hidden;
+                Event.Visibility = Visibility.Hidden;
+                Payment.Visibility = Visibility.Hidden;
+            }
+            else if (selected == "Payment")
+            {
+                Payment.Visibility = Visibility.Visible;
+                Event.Visibility = Visibility.Hidden;
+                Exam.Visibility = Visibility.Hidden;
+                Assignment.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+
+            }
+        }
     }
 }
