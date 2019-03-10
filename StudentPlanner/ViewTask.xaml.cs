@@ -29,19 +29,31 @@ namespace StudentPlanner {
         public ViewTask(Task task): this() {
             Task = task;
             taskGrid.DataContext = Task;
-            content1.Content = Task;
+            btnStart.Content = Task;
+            btnPause.Content = Task;
+
+            ButtonVisibility();
+        }
+
+        private void ButtonVisibility() {
+            completeButton.Visibility = Task.Status == Status.Complete ? Visibility.Hidden : Visibility.Visible;
+            btnStart.Visibility = Task.Status == Status.Complete || Task.Status == Status.Started ? Visibility.Hidden : Visibility.Visible;
+            btnPause.Visibility = Task.Status == Status.Complete || Task.Status == Status.Paused ? Visibility.Hidden : Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
             Task.CompleteTask();
+            ButtonVisibility();
         }
 
         private void StartTask(object sender, RoutedEventArgs e) {
             if (Task is IStartableTask) ((IStartableTask) Task).StartTask();
+            ButtonVisibility();
         }
 
         private void PauseTask(object sender, RoutedEventArgs e) {
             if (Task is IPausableTask) ((IPausableTask) Task).PauseTask();
+            ButtonVisibility();
         }
     }
 }

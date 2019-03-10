@@ -5,7 +5,6 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StudentPlanner"
       xmlns:models="clr-namespace:StudentPlanner.Models"
-      xmlns:interfaces="clr-namespace:StudentPlanner.Interfaces"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewTask">
@@ -43,30 +42,34 @@
             <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" />
         </Grid>
 
-        <ContentControl Name="content1" Grid.Row="1">
+        <ContentControl Name="btnStart" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type models:ExamTask}">
-                    <StackPanel>
-                        <Button Content="Start Exam" Click="StartTask" />
-                    </StackPanel>
+                    <Button Content="Start Exam" Click="StartTask" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:AssignmentTask}">
-                    <StackPanel>
-                        <Button Content="Start Assignment" Click="StartTask" />
-                        <Button Content="Pause Assignment" Click="PauseTask" />
-                    </StackPanel>
+                    <Button Content="Start Assignment" Click="StartTask" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:EventTask}">
-                    <StackPanel>
-                        <Button Content="Start Event" Click="StartTask" />
-                        <Button Content="Pause Event" Click="PauseTask" />
-                    </StackPanel>
+                    <Button Content="Start Event" Click="StartTask" />
                 </DataTemplate>
-                <DataTemplate DataType="{x:Type models:PaymentTask}">
-                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:PaymentTask}" />
             </ContentControl.Resources>
         </ContentControl>
 
-        <Button Grid.Row="3" Content="Complete" Click="Button_Click" />
+        <ContentControl Name="btnPause" Grid.Row="2">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type models:ExamTask}" />
+                <DataTemplate DataType="{x:Type models:AssignmentTask}">
+                    <Button Content="Pause Assignment" Click="PauseTask" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:EventTask}">
+                    <Button Content="Pause Event" Click="PauseTask" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:PaymentTask}" />
+            </ContentControl.Resources>
+        </ContentControl>
+
+        <Button Name="completeButton" Grid.Row="3" Content="Complete" Click="Button_Click" />
     </Grid>
 </Page>
