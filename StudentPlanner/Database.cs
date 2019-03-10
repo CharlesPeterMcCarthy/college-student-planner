@@ -32,20 +32,16 @@ namespace StudentPlanner {
                new DateTime(2019, 1, 4, 9, 0, 0), new DateTime(2018, 12, 27), "Home");
             Models.Task t10 = new EventTask("Sesh", "Welshy for a few RA tunes", Priority.High, Status.NotStarted,
                new DateTime(2019, 1, 2, 23, 0, 0), new DateTime(2018, 12, 27), "Lola's");
-
+        
             Day w1d1 = new Day(new DateTime(2019, 1, 1), new List<Models.Task>(new Models.Task[] { t1, t5 }));
             Day w1d2 = new Day(new DateTime(2019, 1, 2), new List<Models.Task>(new Models.Task[] { t2, t10 }));
-            Day w1d3 = new Day(new DateTime(2019, 1, 3), new List<Models.Task>());
             Day w1d4 = new Day(new DateTime(2019, 1, 4), new List<Models.Task>(new Models.Task[] { t9 }));
-            Day w1d5 = new Day(new DateTime(2019, 1, 5), new List<Models.Task>());
-            Day w1d6 = new Day(new DateTime(2019, 1, 6), new List<Models.Task>());
-            Day w1d7 = new Day(new DateTime(2019, 1, 7), new List<Models.Task>());
 
-            Day w2d1 = new Day(new DateTime(2019, 1, 10), new List<Models.Task>(new Models.Task[] { t3, t4, t7, t8 }));
-            Day w2d2 = new Day(new DateTime(2019, 1, 13), new List<Models.Task>(new Models.Task[] { t6 }));
+            Day w2d3 = new Day(new DateTime(2019, 1, 10), new List<Models.Task>(new Models.Task[] { t3, t4, t7, t8 }));
+            Day w2d6 = new Day(new DateTime(2019, 1, 13), new List<Models.Task>(new Models.Task[] { t6 }));
 
-            Week w1 = new Week(1, new DateTime(2019, 1, 1), new DateTime(2019, 1, 7), new List<Day>(new Day[] { w1d1, w1d2, w1d3, w1d4, w1d5, w1d6, w1d7 }));
-            Week w2 = new Week(2, new DateTime(2019, 1, 8), new DateTime(2019, 1, 14), new List<Day>(new Day[] { w2d1, w2d2 }));
+            Week w1 = new Week(1, new DateTime(2019, 1, 1), new DateTime(2019, 1, 7), new List<Day>(new Day[] { w1d1, w1d2, w1d4 }));
+            Week w2 = new Week(2, new DateTime(2019, 1, 8), new DateTime(2019, 1, 14), new List<Day>(new Day[] { w2d3, w2d6 }));
 
             Planner p = new Planner(new List<Week>(new Week[] { w1, w2 }));
 
