@@ -12,6 +12,7 @@ namespace StudentPlanner.Models {
         public int PercentageWorth { get; private set; }
         public List<string> MaterialsNeeded { get; private set; }
         public DateTime StartedDatetime { get; private set; }
+        public string Materials { get { return string.Join(", ", MaterialsNeeded); } }
 
         public ExamTask(
             string title, string description, Priority priority, Status status,
