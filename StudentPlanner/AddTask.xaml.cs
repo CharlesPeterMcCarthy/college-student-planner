@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentPlanner.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,46 +21,24 @@ namespace StudentPlanner {
     public partial class AddTask : Page {
         public AddTask() {
             InitializeComponent();
+
+            SetComboBoxSources();
+        }
+
+        private void SetComboBoxSources() {
+            comboTaskType.ItemsSource = new string[] { "Assignment", "Event", "Exam", "Payment" };
+            comboPriority.ItemsSource = Enum.GetNames(typeof(Priority));
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //check what has been selected 
-            Console.WriteLine("Changed Selection");
-            string selected = ComboBox.SelectedValueProperty.ToString();
+            string selected = comboTaskType.SelectedItem.ToString();
 
-            if (selected == "Assignment")
-            {
-                Assignment.Visibility = Visibility.Visible;
-                Event.Visibility = Visibility.Hidden;
-                Exam.Visibility = Visibility.Hidden;
-                Payment.Visibility = Visibility.Hidden;
-            }
-            else if (selected == "Event")
-            {
-                Event.Visibility = Visibility.Visible;
-                Assignment.Visibility = Visibility.Hidden;
-                Exam.Visibility = Visibility.Hidden;
-                Payment.Visibility = Visibility.Hidden;
-            }
-            else if (selected == "Exam")
-            {
-                Exam.Visibility = Visibility.Visible;
-                Assignment.Visibility = Visibility.Hidden;
-                Event.Visibility = Visibility.Hidden;
-                Payment.Visibility = Visibility.Hidden;
-            }
-            else if (selected == "Payment")
-            {
-                Payment.Visibility = Visibility.Visible;
-                Event.Visibility = Visibility.Hidden;
-                Exam.Visibility = Visibility.Hidden;
-                Assignment.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-
-            }
+            Assignment.Visibility = selected == "Assignment" ? Visibility.Visible : Visibility.Hidden;
+            Event.Visibility = selected == "Event" ? Visibility.Visible : Visibility.Hidden;
+            Exam.Visibility = selected == "Exam" ? Visibility.Visible : Visibility.Hidden;
+            Payment.Visibility = selected == "Payment" ? Visibility.Visible : Visibility.Hidden;
         }
     }
 }

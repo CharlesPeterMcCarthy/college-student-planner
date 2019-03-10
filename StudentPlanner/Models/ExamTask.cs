@@ -8,22 +8,29 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     public class ExamTask : Task, IStartableTask {
         //properties
+        public string Subject { get; private set; }
+        public int PercentageWorth { get; private set; }
         public List<string> MaterialsNeeded { get; private set; }
         public DateTime StartedDatetime { get; private set; }
 
         public ExamTask(
             string title, string description, Priority priority, Status status,
-            DateTime dueDatetime, DateTime createdDatetime, 
-            List<string> materialsNeeded, DateTime startedDatetime
+            DateTime dueDatetime, DateTime createdDatetime, string subject,
+            int percentageWorth, List<string> materialsNeeded, DateTime startedDatetime
         ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
+            Subject = subject;
+            PercentageWorth = percentageWorth;
             MaterialsNeeded = materialsNeeded;
             StartedDatetime = startedDatetime;
         }
 
         public ExamTask(
             string title, string description, Priority priority, Status status,
-            DateTime dueDatetime, DateTime createdDatetime, List<string> materialsNeeded
+            DateTime dueDatetime, DateTime createdDatetime, string subject,
+            int percentageWorth, List<string> materialsNeeded
         ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
+            Subject = subject;
+            PercentageWorth = percentageWorth;
             MaterialsNeeded = materialsNeeded;
         }
 

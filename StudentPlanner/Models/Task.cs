@@ -36,6 +36,7 @@ namespace StudentPlanner.Models {
         public DateTime DueDatetime { get; private set; }
         public DateTime CreatedDatetime { get; private set; }
         public DateTime CompleteDatetime { get; private set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string propertyName) {

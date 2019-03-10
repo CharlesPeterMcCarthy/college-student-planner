@@ -10,11 +10,11 @@ namespace StudentPlanner {
         
         public User GetUser() {
             Models.Task t1 = new ExamTask("Maths Exam", "January exam for Maths", Priority.High, Status.NotStarted,
-                new DateTime(2019, 1, 1, 9, 0, 0), new DateTime(2018, 12, 8), new List<string>(new string[] { "Calculator", "Pens" }));
+                new DateTime(2019, 1, 1, 9, 0, 0), new DateTime(2018, 12, 8), "Maths", 30, new List<string>(new string[] { "Calculator", "Pens" }));
             Models.Task t2 = new ExamTask("Programming Exam", "January exam for Programming - Open book", Priority.Medium, Status.NotStarted,
-                new DateTime(2019, 1, 2, 13, 0, 0), new DateTime(2018, 12, 8), new List<string>(new string[] { "Pen", "Paper", "Notes" }));
+                new DateTime(2019, 1, 2, 13, 0, 0), new DateTime(2018, 12, 8), "Programming", 10, new List<string>(new string[] { "Pen", "Paper", "Notes" }));
             Models.Task t3 = new ExamTask("Web Exam", "Open book Angular web exam", Priority.High, Status.NotStarted,
-                new DateTime(2019, 1, 10, 9, 0, 0), new DateTime(2018, 12, 9), new List<string>(new string[] { "Notes" }));
+                new DateTime(2019, 1, 10, 9, 0, 0), new DateTime(2018, 12, 9), "Web Dev", 20, new List<string>(new string[] { "Notes" }));
 
             Models.Task t4 = new PaymentTask("Semester Payment", "Pay the fees for this semester", Priority.High, Status.NotStarted,
                 new DateTime(2019, 1, 10, 22, 0, 0), new DateTime(2018, 9, 1), 1500);

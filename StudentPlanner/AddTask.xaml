@@ -4,80 +4,104 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:StudentPlanner"
-      xmlns:codeg="clr-namespace:System;assembly=mscorlib"
+      xmlns:models="clr-namespace:StudentPlanner.Models"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddTask">
    
-    
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Content="Select Type: "></Label>
-        <StackPanel Grid.Column="1" Grid.Row="0">
-            <ComboBox Width="200" SelectionChanged="ComboBox_SelectionChanged"
-               Text="--Make Selection--">
-                <ComboBoxItem>Assignment</ComboBoxItem>
-                <ComboBoxItem>Event</ComboBoxItem>
-                <ComboBoxItem>Exam</ComboBoxItem>
-                <ComboBoxItem>Payment</ComboBoxItem>
-            </ComboBox>
-        </StackPanel>
+
+        <Label Content="Select Type:" Grid.Column="0" Grid.Row="0"></Label>
+        <ComboBox Grid.Column="1" Grid.Row="0" Width="200" SelectionChanged="ComboBox_SelectionChanged"
+            Text="--Choose Type--" Name="comboTaskType" IsEditable="True" IsReadOnly="True" />
 
         <Label Content="Title:" Grid.Column="0" Grid.Row="1"></Label>
         <TextBox Grid.Column="1" Grid.Row="1" Width="200" ></TextBox>
+        
         <Label Content="Description:" Grid.Column="0" Grid.Row="2"></Label>
         <TextBox Grid.Column="1" Grid.Row="2" Width="200"></TextBox>
 
         <Label Content="Priority" Grid.Column="0" Grid.Row="3"></Label>
-        <StackPanel Grid.Column="1" Grid.Row="3">
-              
-            </StackPanel>
-        <Label Content="Status" Grid.Column="0" Grid.Row="4"></Label>
-        <StackPanel Grid.Column="1" Grid.Row="4">
-                
-        </StackPanel>
-        <StackPanel Name="Assignment" Grid.Row="5" Grid.Column="1" Visibility="Hidden">
-            <Label Content="Subject:"></Label>
-            <TextBox Width="200"></TextBox>
-            <Label Content="Percentage Worth:" ></Label>
-            <TextBox Grid.Column="1" Grid.Row="6" Width="200"></TextBox>
-        </StackPanel>
-        <StackPanel Name="Event" Grid.Row="7" Visibility="Hidden">
-            <Label Content="Location:" Grid.Column="0" Grid.Row="7"></Label>
-            <TextBox Grid.Column="1" Grid.Row="7" Width="200"></TextBox>
-        </StackPanel>
-        <StackPanel Name="Exam" Grid.Row="8" Visibility="Hidden">
-            <Label Content="Materials Needed:" Grid.Column="0" Grid.Row="8"></Label>
-            <TextBox Grid.Column="1" Grid.Row="8" Width="200"></TextBox>
-        </StackPanel>
-        <StackPanel Name="StartEnd" Grid.Row="9" Grid.Column="1" Visibility="Hidden">
-            <Label Content="Start Date:">
-            </Label>
-            <TextBox Grid.Column="1" Grid.Row="8" Width="200"></TextBox>
-            <Label Content="End Date:"></Label>
-            <TextBox Width="200"></TextBox>
-        </StackPanel>
-        <StackPanel Name="Payment" Grid.Row="10" Grid.Column="1" Visibility="Hidden">
-            <Label Content="Amount:"></Label>
-            <TextBox  Width="200"></TextBox>
-        </StackPanel>
+        <ComboBox Grid.Column="1" Grid.Row="3" Width="200" Name="comboPriority"
+            Text="--Choose Priority--" IsEditable="True" IsReadOnly="True" />
 
+        <Label Content="Due" Grid.Column="0" Grid.Row="4"></Label>
+        <DatePicker Grid.Column="1" Grid.Row="4" Width="200" />
+
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="Assignment" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Subject:"></Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+            <Label Grid.Column="0" Grid.Row="1" Content="Percentage Worth:" ></Label>
+            <TextBox Grid.Column="1" Grid.Row="1" Width="200"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="Event" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Location:"></Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="Exam" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Subject:"></Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+            <Label Grid.Column="0" Grid.Row="1" Content="Percentage Worth:" ></Label>
+            <TextBox Grid.Column="1" Grid.Row="1" Width="200"></TextBox>
+            <Label Grid.Column="0" Grid.Row="2" Content="Materials Needed:"></Label>
+            <TextBox Grid.Column="1" Grid.Row="2" Width="200"></TextBox>
+        </Grid>
+
+        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="Payment" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Content="Amount:"></Label>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+        </Grid>
     </Grid>
 </Page>
