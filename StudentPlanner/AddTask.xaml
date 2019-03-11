@@ -24,6 +24,9 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Label Content="Select Type:" Grid.Column="0" Grid.Row="0"></Label>
@@ -31,17 +34,17 @@
             Text="--Choose Type--" Name="comboTaskType" IsEditable="True" IsReadOnly="True" />
 
         <Label Content="Title:" Grid.Column="0" Grid.Row="1"></Label>
-        <TextBox Grid.Column="1" Grid.Row="1" Width="200" ></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="1" Width="200" Name="tblkTitle" ></TextBox>
         
         <Label Content="Description:" Grid.Column="0" Grid.Row="2"></Label>
-        <TextBox Grid.Column="1" Grid.Row="2" Width="200"></TextBox>
+        <TextBox Grid.Column="1" Grid.Row="2" Width="200" Name="tblkDescription"></TextBox>
 
         <Label Content="Priority" Grid.Column="0" Grid.Row="3"></Label>
         <ComboBox Grid.Column="1" Grid.Row="3" Width="200" Name="comboPriority"
             Text="--Choose Priority--" IsEditable="True" IsReadOnly="True" />
 
         <Label Content="Due" Grid.Column="0" Grid.Row="4"></Label>
-        <DatePicker Grid.Column="1" Grid.Row="4" Width="200" />
+        <DatePicker Grid.Column="1" Grid.Row="4" Width="200" Name="dueDate" />
 
         <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="Assignment" Visibility="Hidden">
             <Grid.ColumnDefinitions>
@@ -54,9 +57,9 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Content="Subject:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxSubject"></TextBox>
             <Label Grid.Column="0" Grid.Row="1" Content="Percentage Worth:" ></Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="1" Width="200" Name="tbxPercentage"></TextBox>
         </Grid>
 
         <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="Event" Visibility="Hidden">
@@ -69,7 +72,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Content="Location:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxLocation"></TextBox>
         </Grid>
 
         <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="Exam" Visibility="Hidden">
@@ -84,11 +87,11 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Content="Subject:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxSubjectExam"></TextBox>
             <Label Grid.Column="0" Grid.Row="1" Content="Percentage Worth:" ></Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="1" Width="200" Name="tbxPercentExam"></TextBox>
             <Label Grid.Column="0" Grid.Row="2" Content="Materials Needed:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="2" Width="200" Name="tbxMaterials"></TextBox>
         </Grid>
 
         <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="Payment" Visibility="Hidden">
@@ -101,7 +104,8 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Content="Amount:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxAmount"></TextBox>
         </Grid>
+        <Button Content="Submit" Grid.Column="1" Grid.Row="11" Width="150" Click="Button_Click"></Button>
     </Grid>
 </Page>

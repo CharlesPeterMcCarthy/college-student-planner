@@ -35,6 +35,10 @@ namespace StudentPlanner.Models {
         }
 
         // More constructors will probably be needed
+        public AssignmentTask()
+        {
+
+        }
 
         public Status PauseTask() {
             Status = Status.Paused;
