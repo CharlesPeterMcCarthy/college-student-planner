@@ -43,7 +43,7 @@ namespace StudentPlanner
         }
 
         private void TblkAdd_MouseDown(object sender, MouseButtonEventArgs e) {
-            AddTask at = new AddTask();
+            AddTask at = new AddTask(User.Planner);
 
             SetheadingText("Add Task");
             mainFrame.NavigationService.Navigate(at);

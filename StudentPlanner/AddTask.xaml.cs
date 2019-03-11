@@ -22,10 +22,17 @@ namespace StudentPlanner {
     /// 
 
     public partial class AddTask : Page {
+        public Planner Planner { get; set; }
+
         public AddTask() {
             InitializeComponent();
 
             SetComboBoxSources();
+        }
+
+        public AddTask(Planner p) : this()
+        {
+            Planner = p;
         }
 
         private void SetComboBoxSources() {
@@ -48,40 +55,76 @@ namespace StudentPlanner {
         {
             string selected = comboTaskType.SelectedItem.ToString();
 
-            string title = tblkTitle.ToString();
-            string description = tblkDescription.ToString();
+            string title = tblkTitle.Text;
+            string description = tblkDescription.Text;
             string prioritycombo = comboPriority.SelectedItem.ToString();
             Priority priority;
-            DateTime due = dueDate.DisplayDate;
+            DateTime due = dueDate.SelectedDate.Value.Date;
+            Console.WriteLine(due);
 
-            if (prioritycombo == "High") priority = Priority.High;
-            else if (prioritycombo == "Medium") priority = Priority.Medium;
-            else priority = Priority.Low;
-            
-            switch (selected)
+            Console.WriteLine("test");
+
+            if (DateService.DateAfterToday(due))
             {
-                case "Assignment":
-                    string subject = tbxSubject.ToString();
-                    int percentage = int.Parse(tbxPercentage.ToString());
-                    Models.Task tAssignment = new AssignmentTask(title, description, priority, due, DateTime.Now, subject, percentage);
-                    break;
-                case "Exam":
-                    string subjectExam = tbxSubjectExam.ToString();
-                    string materials = tbxMaterials.ToString();
-                    int percentageExam = int.Parse(tbxPercentExam.ToString());
-                    Models.Task tExam = new ExamTask(title, description, priority, due, DateTime.Now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
-                    break;
-                case "Event":
-                    string location = tbxLocation.ToString();
-                    Models.Task tEvent = new EventTask(title, description, priority, due, DateTime.Now, location);
-                    break;
-                case "Payment":
-                    decimal amount = decimal.Parse(tbxAmount.ToString());
-                    Models.Task tPayment = new PaymentTask(title, description, priority, due, DateTime.Now, amount);
-                    break;
-            }
+                if (prioritycombo == "High") priority = Priority.High;
+                else if (prioritycombo == "Medium") priority = Priority.Medium;
+                else priority = Priority.Low;
 
-            
+                Models.Task newTask = null;
+
+                switch (selected)
+                {
+                    case "Assignment":
+                        string subject = tbxSubject.Text;
+                        int percentage = int.Parse(tbxPercentage.Text);
+                        newTask = new AssignmentTask(title, description, priority, due, DateTime.Now, subject, percentage);
+                        break;
+                    case "Exam":
+                        string subjectExam = tbxSubjectExam.Text;
+                        string materials = tbxMaterials.Text;
+                        int percentageExam = int.Parse(tbxPercentExam.Text);
+                        newTask = new ExamTask(title, description, priority, due, DateTime.Now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
+                        break;
+                    case "Event":
+                        string location = tbxLocation.Text;
+                        newTask = new EventTask(title, description, priority, due, DateTime.Now, location);
+                        break;
+                    case "Payment":
+                        decimal amount = decimal.Parse(tbxAmount.Text);
+                        newTask = new PaymentTask(title, description, priority, due, DateTime.Now, amount);
+                        break;
+                        
+                }
+
+                int weekNumber = DateService.GetWeekNumber(due);
+                Console.WriteLine("week " + weekNumber);
+                Week week = Planner.Weeks.Find(w => w.WeekNumber == weekNumber);
+                if (week != null)
+                {
+                    Day day = week.Days.Find(d => d.Date.Date == newTask.DueDatetime.Date);
+
+                    if (day != null)
+                    {
+                        Console.WriteLine("Nothing new - add task");
+                        day.Tasks.Add(newTask);
+                    } else
+                    {
+                        Console.WriteLine("New day 1");
+                        Day newDay = new Day(newTask.DueDatetime.Date, new List<Models.Task>(new Models.Task[] { newTask }));
+                        week.AddDay(newDay);
+                    }
+                } else
+                {
+                    Console.WriteLine("New week");
+                    Week newWeek = new Week(weekNumber, DateTime.Now, DateTime.Now);
+
+                    Console.WriteLine("New day 2");
+                    Day newDay = new Day(newTask.DueDatetime.Date, new List<Models.Task>(new Models.Task[] { newTask }));
+                    newWeek.AddDay(newDay);
+
+                    Planner.AddWeek(newWeek);
+                }
+            }
         }
     }
 }
