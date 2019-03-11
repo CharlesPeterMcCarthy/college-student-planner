@@ -51,52 +51,34 @@ namespace StudentPlanner {
             string title = tblkTitle.ToString();
             string description = tblkDescription.ToString();
             string prioritycombo = comboPriority.SelectedItem.ToString();
-            Priority priority = 0;
+            Priority priority;
             DateTime due = dueDate.DisplayDate;
 
-            if (prioritycombo == "High")
-            {
-                priority = Priority.High;
-            }
-            else if (prioritycombo == "Medium")
-            {
-                priority = Priority.Medium;
-            }
-            else if (prioritycombo == "low")
-            {
-                priority = Priority.Low;
-            }
-
+            if (prioritycombo == "High") priority = Priority.High;
+            else if (prioritycombo == "Medium") priority = Priority.Medium;
+            else priority = Priority.Low;
+            
             switch (selected)
             {
                 case "Assignment":
                     string subject = tbxSubject.ToString();
                     int percentage = int.Parse(tbxPercentage.ToString());
-                    Models.Task tAssignment = new AssignmentTask(title, description, priority, Status.Paused, due, due, subject, percentage, due  );
-                    //note to charles
-                    //status is not in xaml -- so i have hard coded this for the minute
-                    //and created, started date have been entered as the due date taken in at the start for the meantime                                                           
+                    Models.Task tAssignment = new AssignmentTask(title, description, priority, due, DateTime.Now, subject, percentage);
                     break;
                 case "Exam":
                     string subjectExam = tbxSubjectExam.ToString();
                     string materials = tbxMaterials.ToString();
                     int percentageExam = int.Parse(tbxPercentExam.ToString());
-                    Models.Task tExam = new ExamTask(title, description, priority, Status.Paused, due, due, subjectExam, percentageExam, new List<string>(new string[] { "Pen", "Paper", "Notes" }));
-                    //status and dates again are same as the due date
-                    //not sure how to bring in a list from a textbox. so used dummy data from the database
+                    Models.Task tExam = new ExamTask(title, description, priority, due, DateTime.Now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
                     break;
                 case "Event":
                     string location = tbxLocation.ToString();
-                    Models.Task tEvent = new EventTask(title, description, priority, Status.Paused, due, due, location, due, due);
-                    //used the due date for any dates in the constructor
+                    Models.Task tEvent = new EventTask(title, description, priority, due, DateTime.Now, location);
                     break;
                 case "Payment":
                     decimal amount = decimal.Parse(tbxAmount.ToString());
-                    Models.Task tPayment = new PaymentTask(title, description, priority, Status.Paused, due, due, amount);
-                    //used due date for created date time
+                    Models.Task tPayment = new PaymentTask(title, description, priority, due, DateTime.Now, amount);
                     break;
-                default:
-                break;
             }
 
 

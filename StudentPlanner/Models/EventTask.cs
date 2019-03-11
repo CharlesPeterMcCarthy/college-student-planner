@@ -29,6 +29,14 @@ namespace StudentPlanner.Models {
             Location = location;
         }
 
+        public EventTask(
+            string title, string description, Priority priority,
+            DateTime dueDatetime, DateTime createdDatetime, string location
+        ) : base(title, description, priority, dueDatetime, createdDatetime)
+        {
+            Location = location;
+        }
+
         // More constructors will probably be needed
 
         //methods
