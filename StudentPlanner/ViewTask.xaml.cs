@@ -31,29 +31,34 @@ namespace StudentPlanner {
             taskGrid.DataContext = Task;
             btnStart.Content = Task;
             btnPause.Content = Task;
+            taskInfo.Content = Task;
 
-            ButtonVisibility();
+            UpdateButtonVisibility();
         }
 
-        private void ButtonVisibility() {
+        private void UpdateButtonVisibility() {
             completeButton.Visibility = Task.Status == Status.Complete ? Visibility.Hidden : Visibility.Visible;
             btnStart.Visibility = Task.Status == Status.Complete || Task.Status == Status.Started ? Visibility.Hidden : Visibility.Visible;
-            btnPause.Visibility = Task.Status == Status.Complete || Task.Status == Status.Paused ? Visibility.Hidden : Visibility.Visible;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            Task.CompleteTask();
-            ButtonVisibility();
+            btnPause.Visibility = Task.Status == Status.Started ? Visibility.Visible : Visibility.Hidden;
         }
 
         private void StartTask(object sender, RoutedEventArgs e) {
-            if (Task is IStartableTask) ((IStartableTask) Task).StartTask();
-            ButtonVisibility();
+            if (Task is IStartableTask) {
+                ((IStartableTask) Task).StartTask();
+                UpdateButtonVisibility();
+            }
         }
 
         private void PauseTask(object sender, RoutedEventArgs e) {
-            if (Task is IPausableTask) ((IPausableTask) Task).PauseTask();
-            ButtonVisibility();
+            if (Task is IPausableTask) {
+                ((IPausableTask) Task).PauseTask();
+                UpdateButtonVisibility();
+            }
+        }
+
+        private void CompleteTask(object sender, RoutedEventArgs e) {
+            Task.CompleteTask();
+            UpdateButtonVisibility();
         }
     }
 }

@@ -15,6 +15,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -39,37 +41,110 @@
             <Label Grid.Row="3" Grid.Column="0" Content="Priority" />
             <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Priority, Mode=OneWay}" VerticalAlignment="Center" />
             <Label Grid.Row="4" Grid.Column="0" Content="Status" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" FontWeight="Bold" />
         </Grid>
 
-        <ContentControl Name="btnStart" Grid.Row="1">
+        <ContentControl Name="taskInfo" Grid.Row="1">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type models:ExamTask}">
-                    <Button Content="Start Exam" Click="StartTask" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="80*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Subject" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Subject, Mode=OneWay}" VerticalAlignment="Center" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Percentage" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=PercentageWorth, Mode=OneWay}" VerticalAlignment="Center" />
+
+                        <Label Grid.Row="2" Grid.Column="0" Content="Materials Needed" />
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Materials, Mode=OneWay}" VerticalAlignment="Center" />
+                    </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:AssignmentTask}">
-                    <Button Content="Start Assignment" Click="StartTask" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="80*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Subject" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Subject, Mode=OneWay}" VerticalAlignment="Center" />
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Percentage" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=PercentageWorth, Mode=OneWay}" VerticalAlignment="Center" />
+                    </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:EventTask}">
-                    <Button Content="Start Event" Click="StartTask" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="80*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Location" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Location, Mode=OneWay}" VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:PaymentTask}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="80*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Amount" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Amount, Mode=OneWay}" VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+
+        <ContentControl Name="btnStart" Grid.Row="2">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type models:ExamTask}">
+                    <Button Content="Start Exam" Click="StartTask" Width="200" HorizontalAlignment="Right" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:AssignmentTask}">
+                    <Button Content="Start Assignment" Click="StartTask" Width="200" HorizontalAlignment="Right" />
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type models:EventTask}">
+                    <Button Content="Start Event" Click="StartTask" Width="200" HorizontalAlignment="Right" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:PaymentTask}" />
             </ContentControl.Resources>
         </ContentControl>
 
-        <ContentControl Name="btnPause" Grid.Row="2">
+        <ContentControl Name="btnPause" Grid.Row="3">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type models:ExamTask}" />
                 <DataTemplate DataType="{x:Type models:AssignmentTask}">
-                    <Button Content="Pause Assignment" Click="PauseTask" />
+                    <Button Content="Pause Assignment" Click="PauseTask" Width="200" HorizontalAlignment="Right" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:EventTask}">
-                    <Button Content="Pause Event" Click="PauseTask" />
+                    <Button Content="Pause Event" Click="PauseTask" Width="200" HorizontalAlignment="Right" />
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:PaymentTask}" />
             </ContentControl.Resources>
         </ContentControl>
 
-        <Button Name="completeButton" Grid.Row="3" Content="Complete" Click="Button_Click" />
+        <Button Name="completeButton" Grid.Row="4" Content="Complete" Click="CompleteTask" Width="200" HorizontalAlignment="Right" />
     </Grid>
 </Page>

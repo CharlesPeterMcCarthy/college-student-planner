@@ -16,12 +16,10 @@ namespace StudentPlanner.Models {
             Amount = amount;
         }
 
-        // More constructors will probably be needed
-
         //methods
         public void UpdatePaymentAmount(decimal amount)
         {
             Amount = amount;
-        }//end of update payment amount       
-    }//end of the payment class
+        }     
+    }
 }
