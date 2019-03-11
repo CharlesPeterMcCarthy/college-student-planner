@@ -42,8 +42,9 @@ namespace StudentPlanner {
 
             Week w1 = new Week(1, new DateTime(2019, 1, 1), new DateTime(2019, 1, 7), new List<Day>(new Day[] { w1d1, w1d2, w1d4 }));
             Week w2 = new Week(2, new DateTime(2019, 1, 8), new DateTime(2019, 1, 14), new List<Day>(new Day[] { w2d3, w2d6 }));
+            Week w3 = new Week(3, new DateTime(2019, 1, 15), new DateTime(2019, 1, 21));
 
-            Planner p = new Planner(new List<Week>(new Week[] { w1, w2 }));
+            Planner p = new Planner(new List<Week>(new Week[] { w1, w2, w3 }));
 
             User u = new User("S00123456", "John", new DateTime(1998, 1, 12), p);
 
