@@ -13,6 +13,7 @@ namespace StudentPlanner.Models {
         public DateTime Date { get; private set; }
         public ObservableCollection<Task> Tasks { get; private set; }
 
+        //instanciating the observable collection. Taking in the list of tasks and turning it into an observable collection
         public Day(DateTime date, List<Task> tasks) : this(date) {
             Tasks = new ObservableCollection<Task>(tasks);
         }

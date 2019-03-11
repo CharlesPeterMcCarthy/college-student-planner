@@ -13,18 +13,7 @@ namespace StudentPlanner.Models {
         public List<string> MaterialsNeeded { get; private set; }
         public DateTime StartedDatetime { get; private set; }
         public string Materials { get { return string.Join(", ", MaterialsNeeded); } }
-
-        public ExamTask(
-            string title, string description, Priority priority, Status status,
-            DateTime dueDatetime, DateTime createdDatetime, string subject,
-            int percentageWorth, List<string> materialsNeeded, DateTime startedDatetime
-        ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
-            Subject = subject;
-            PercentageWorth = percentageWorth;
-            MaterialsNeeded = materialsNeeded;
-            StartedDatetime = startedDatetime;
-        }
-
+        //referenced by the database
         public ExamTask(
             string title, string description, Priority priority, Status status,
             DateTime dueDatetime, DateTime createdDatetime, string subject,
@@ -34,7 +23,7 @@ namespace StudentPlanner.Models {
             PercentageWorth = percentageWorth;
             MaterialsNeeded = materialsNeeded;
         }
-
+        //referenced by AddTask.xaml.cs
         public ExamTask(
             string title, string description, Priority priority,
             DateTime dueDatetime, DateTime createdDatetime, string subject,

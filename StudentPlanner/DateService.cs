@@ -8,7 +8,8 @@ namespace StudentPlanner
 {
     class DateService
     {
-
+        //planner starts from 31/12/2018
+        //getting the week number relative to this
         public static int GetWeekNumber(DateTime dt)
         {
             DateTime startDate = new DateTime(2018, 12, 31);

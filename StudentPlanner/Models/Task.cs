@@ -49,11 +49,7 @@ namespace StudentPlanner.Models {
         ) : this(title, description, priority, dueDatetime, createdDatetime) {
             Status = status;
         }
-        public Task()
-        {
-
-        }
-
+        
         public Task(string title, string description, Priority priority, DateTime dueDatetime, DateTime createdDatetime) {
             Title = title;
             Description = description;

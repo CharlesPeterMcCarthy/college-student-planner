@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner {
     class Database {
-        
+        //This is dummy data that will populate the planner. Creating tasks
         public User GetUser() {
             Models.Task t1 = new ExamTask("Maths Exam", "January exam for Maths", Priority.High, Status.NotStarted,
                 new DateTime(2019, 3, 1, 9, 0, 0), new DateTime(2018, 12, 8), "Maths", 30, new List<string>(new string[] { "Calculator", "Pens" }));
@@ -33,20 +33,23 @@ namespace StudentPlanner {
             Models.Task t10 = new EventTask("Sesh", "Welshy for a few tunes", Priority.High, Status.NotStarted,
                new DateTime(2019, 3, 2, 23, 0, 0), new DateTime(2018, 12, 27), "Lola's");
         
+
+            //creating 5 days that have random dates over the space of 13 days. Add tasks to those days.
             Day d1 = new Day(new DateTime(2019, 3, 1), new List<Models.Task>(new Models.Task[] { t1, t5 }));
             Day d2 = new Day(new DateTime(2019, 3, 2), new List<Models.Task>(new Models.Task[] { t2, t10 }));
             Day d3 = new Day(new DateTime(2019, 3, 4), new List<Models.Task>(new Models.Task[] { t9 }));
             Day d4 = new Day(new DateTime(2019, 3, 10), new List<Models.Task>(new Models.Task[] { t3, t4, t7, t8 }));
             Day d5 = new Day(new DateTime(2019, 3, 13), new List<Models.Task>(new Models.Task[] { t6 }));
 
+            //creating 3 weeks and appending the days to each week. 
             Week w1 = new Week(9, new List<Day>(new Day[] { d1, d2 }));
             Week w2 = new Week(10, new List<Day>(new Day[] { d3, d4 }));
             Week w3 = new Week(11, new List<Day>(new Day[] { d5 }));
 
+            //the above weeks are appended to the planner in a list
             Planner p = new Planner(new List<Week>(new Week[] { w1, w2, w3 }));
 
             User u = new User("S00123456", "John", new DateTime(1998, 1, 12), p);
-
             return u;
         }
 

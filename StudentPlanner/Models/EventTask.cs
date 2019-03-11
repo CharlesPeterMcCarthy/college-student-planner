@@ -11,24 +11,14 @@ namespace StudentPlanner.Models {
         public string Location { get; private set; }
         public DateTime StartedDatetime { get; private set; }
         public DateTime PausedDatetime { get; private set; }
-
-        public EventTask(
-            string title, string description, Priority priority, Status status,
-            DateTime dueDatetime, DateTime createdDatetime,
-            string location, DateTime startedDatetime, DateTime pausedDatetime
-        ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
-            Location = location;
-            StartedDatetime = startedDatetime;
-            PausedDatetime = pausedDatetime;
-        }
-
+        //referenced by the database
         public EventTask(
             string title, string description, Priority priority, Status status,
             DateTime dueDatetime, DateTime createdDatetime, string location
         ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
             Location = location;
         }
-
+        //referenced by AddTask.xaml.cs
         public EventTask(
             string title, string description, Priority priority,
             DateTime dueDatetime, DateTime createdDatetime, string location

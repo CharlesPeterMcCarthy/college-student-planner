@@ -8,14 +8,14 @@ namespace StudentPlanner.Models {
     public class PaymentTask : Task {
         //properties
         public decimal Amount { get; private set; }
-
+        //referenced by the database
         public PaymentTask(
             string title, string description, Priority priority, Status status,
             DateTime dueDatetime, DateTime createdDatetime, decimal amount
         ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
             Amount = amount;
         }
-
+        //referenced by AddTask.xaml.cs
         public PaymentTask(
             string title, string description, Priority priority,
             DateTime dueDatetime, DateTime createdDatetime, decimal amount
