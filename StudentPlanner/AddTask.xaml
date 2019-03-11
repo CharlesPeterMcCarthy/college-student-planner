@@ -16,7 +16,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -107,5 +108,6 @@
             <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxAmount"></TextBox>
         </Grid>
         <Button Content="Submit" Grid.Column="1" Grid.Row="11" Width="150" Click="Button_Click"></Button>
+        <TextBlock Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Name="tblkCreated" Text="Task Created" Visibility="Hidden" />
     </Grid>
 </Page>

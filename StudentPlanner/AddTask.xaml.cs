@@ -30,8 +30,7 @@ namespace StudentPlanner {
             SetComboBoxSources();
         }
 
-        public AddTask(Planner p) : this()
-        {
+        public AddTask(Planner p) : this() {
             Planner = p;
         }
 
@@ -40,8 +39,7 @@ namespace StudentPlanner {
             comboPriority.ItemsSource = Enum.GetNames(typeof(Priority));
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             //check what has been selected 
             string selected = comboTaskType.SelectedItem.ToString();
 
@@ -51,8 +49,7 @@ namespace StudentPlanner {
             Payment.Visibility = selected == "Payment" ? Visibility.Visible : Visibility.Hidden;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        private void Button_Click(object sender, RoutedEventArgs e) {
             CreateNewTask();
         }
 
@@ -63,6 +60,7 @@ namespace StudentPlanner {
             string description = tblkDescription.Text;
             Priority priority = GetPriority();
             DateTime due = dueDate.SelectedDate.Value.Date;
+            DateTime now = DateTime.Now;
 
             if (DateService.DateAfterToday(due)) {
                 Models.Task newTask = null;
@@ -72,28 +70,29 @@ namespace StudentPlanner {
                         string subject = tbxSubject.Text;
                         int percentage = int.Parse(tbxPercentage.Text);
 
-                        newTask = new AssignmentTask(title, description, priority, due, DateTime.Now, subject, percentage);
+                        newTask = new AssignmentTask(title, description, priority, due, now, subject, percentage);
                         break;
                     case "Exam":
                         string subjectExam = tbxSubjectExam.Text;
                         string materials = tbxMaterials.Text;
                         int percentageExam = int.Parse(tbxPercentExam.Text);
 
-                        newTask = new ExamTask(title, description, priority, due, DateTime.Now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
+                        newTask = new ExamTask(title, description, priority, due, now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
                         break;
                     case "Event":
                         string location = tbxLocation.Text;
 
-                        newTask = new EventTask(title, description, priority, due, DateTime.Now, location);
+                        newTask = new EventTask(title, description, priority, due, now, location);
                         break;
                     case "Payment":
                         decimal amount = decimal.Parse(tbxAmount.Text);
 
-                        newTask = new PaymentTask(title, description, priority, due, DateTime.Now, amount);
+                        newTask = new PaymentTask(title, description, priority, due, now, amount);
                         break;
                 }
 
                 SaveNewTask(newTask);
+                tblkCreated.Visibility = Visibility.Visible;
             }
         }
 
@@ -118,11 +117,11 @@ namespace StudentPlanner {
                     week.AddDay(newDay);
                 }
             } else {
-                Week newWeek = CreateNewWeek(weekNumber);
+                week = CreateNewWeek(weekNumber);
                 Day newDay = CreateNewDay(newTask);
-                newWeek.AddDay(newDay);
+                week.AddDay(newDay);
 
-                Planner.AddWeek(newWeek);
+                Planner.AddWeek(week);
             }
         }
 
@@ -139,7 +138,7 @@ namespace StudentPlanner {
         }
 
         private Week CreateNewWeek(int weekNumber) {
-            return new Week(weekNumber, DateTime.Now, DateTime.Now);
+            return new Week(weekNumber);
         }
     }
 }
