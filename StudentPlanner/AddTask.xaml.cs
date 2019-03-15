@@ -50,50 +50,71 @@ namespace StudentPlanner {
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) {
-            CreateNewTask();
-        }
-
-        private void CreateNewTask() {
-            string selected = comboTaskType.SelectedItem.ToString();
-
+            string type = comboTaskType.SelectedItem.ToString();
             string title = tblkTitle.Text;
             string description = tblkDescription.Text;
             Priority priority = GetPriority();
             DateTime due = dueDate.SelectedDate.Value.Date;
+
+            Models.Task newTask = CreateNewTask(type, title, description, priority, due);
+
+            if (newTask != null) {
+                int weekNumber = DateService.GetWeekNumber(newTask.DueDatetime);
+
+                SaveNewTask(newTask, weekNumber);
+            }
+        }
+
+        private Models.Task CreateNewTask(string type, string title, string description, Priority priority, DateTime due) {
+            if (title.Length < 3) {
+                Console.WriteLine("Title length is too short.");
+                return null;
+            }
+            if (description.Length < 10) {
+                Console.WriteLine("Description length is too short.");
+                return null;
+            }
+            if (!DateService.DateAfterToday(due)) {
+                Console.WriteLine("The due date must be in the future.");
+                return null;
+            }
+
+            Models.Task newTask = null;
+            
             DateTime now = DateTime.Now;
 
-            if (DateService.DateAfterToday(due)) {
-                Models.Task newTask = null;
+            switch (type) {
+                case "Assignment":
+                    string subject = tbxSubject.Text;
+                    int percentage = int.Parse(tbxPercentage.Text);
 
-                switch (selected) {
-                    case "Assignment":
-                        string subject = tbxSubject.Text;
-                        int percentage = int.Parse(tbxPercentage.Text);
+                    newTask = new AssignmentTask(title, description, priority, due, now, subject, percentage);
+                    break;
+                case "Exam":
+                    string subjectExam = tbxSubjectExam.Text;
+                    string materials = tbxMaterials.Text;
+                    int percentageExam = int.Parse(tbxPercentExam.Text);
 
-                        newTask = new AssignmentTask(title, description, priority, due, now, subject, percentage);
-                        break;
-                    case "Exam":
-                        string subjectExam = tbxSubjectExam.Text;
-                        string materials = tbxMaterials.Text;
-                        int percentageExam = int.Parse(tbxPercentExam.Text);
+                    newTask = new ExamTask(title, description, priority, due, now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
+                    break;
+                case "Event":
+                    string location = tbxLocation.Text;
 
-                        newTask = new ExamTask(title, description, priority, due, now, subjectExam, percentageExam, new List<string>(materials.Split(',')));
-                        break;
-                    case "Event":
-                        string location = tbxLocation.Text;
+                    newTask = new EventTask(title, description, priority, due, now, location);
+                    break;
+                case "Payment":
+                    decimal amount = decimal.Parse(tbxAmount.Text);
 
-                        newTask = new EventTask(title, description, priority, due, now, location);
-                        break;
-                    case "Payment":
-                        decimal amount = decimal.Parse(tbxAmount.Text);
-
-                        newTask = new PaymentTask(title, description, priority, due, now, amount);
-                        break;
-                }
-
-                SaveNewTask(newTask);
-                tblkCreated.Visibility = Visibility.Visible;
+                    newTask = new PaymentTask(title, description, priority, due, now, amount);
+                    break;
+                default:
+                    Console.WriteLine("Invalid task type.");
+                    break;
             }
+
+            if (newTask != null) tblkCreated.Visibility = Visibility.Visible;
+            
+            return newTask;
         }
 
         private Priority GetPriority() {
@@ -104,15 +125,24 @@ namespace StudentPlanner {
             else return Priority.Low;
         }
 
-        private void SaveNewTask(Models.Task newTask) {
-            int weekNumber = DateService.GetWeekNumber(newTask.DueDatetime);
+        private bool SaveNewTask(Models.Task newTask, int weekNumber) {
+            if (newTask == null) {
+                Console.WriteLine("Task is not defined");
+                return false;
+            }
+            if (weekNumber < 1 || weekNumber > 52) {
+                Console.WriteLine("Invalid week number");
+                return false;
+            }
+
             Week week = FindWeek(weekNumber);
 
             if (week != null) {
                 Day day = FindDay(week, newTask.DueDatetime.Date);
 
-                if (day != null) day.AddTask(newTask);
-                else {
+                if (day != null) {
+                    day.AddTask(newTask);
+                } else {
                     Day newDay = CreateNewDay(newTask);
                     week.AddDay(newDay);
                 }
@@ -123,6 +153,8 @@ namespace StudentPlanner {
 
                 Planner.AddWeek(week);
             }
+
+            return true;
         }
 
         private Week FindWeek(int weekNumber) {

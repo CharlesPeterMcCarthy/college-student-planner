@@ -76,7 +76,9 @@ namespace StudentPlanner {
         }
 
         private ObservableCollection<Models.Task> GetDayTasks(DayOfWeek day) {
-            return (Planner.Weeks.Find(w => w.WeekNumber == WeekNum).Days.Find(d => d.DayOfWeek == day)).Tasks;
+            ObservableCollection<Models.Task> t = (Planner.Weeks.Find(w => w.WeekNumber == WeekNum).Days.Find(d => d.DayOfWeek == day)).Tasks;
+            Console.WriteLine(t);
+            return t;
         }
 
         private void DayList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
