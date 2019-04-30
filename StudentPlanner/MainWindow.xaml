@@ -18,24 +18,61 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="90*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Name="stkpNav" Background="Gray" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Grid.RowSpan="2">
-            <TextBlock Name="tblkPlanner" Text="My Planner" Margin="10" MouseDown="TblkPlanner_MouseDown" />
-            <TextBlock Name="tblkAdd" Text="Add Task" Margin="10" MouseDown="TblkAdd_MouseDown" />
-        </StackPanel>
+        <materialDesign:DrawerHost>
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <StackPanel Margin="16">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        Margin="0 0 0 10"
+                        FontWeight="bold"
+                        Foreground="{DynamicResource PrimaryHueDarkBrush}"
+                        Style="{StaticResource MaterialDesignTitleTextBlock}"
+                        IsEnabled="False"
+                        >Navigation</TextBlock>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Click="TblkPlanner_MouseDown"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">My Planner</Button>
+                    <Button
+                        Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Left}"
+                        Click="TblkAdd_MouseDown"
+                        Margin="4"
+                        HorizontalAlignment="Center"
+                        Style="{DynamicResource MaterialDesignFlatButton}">Add Task</Button>
+                </StackPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="90*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- Top header -->
+                <materialDesign:ColorZone
+                    Grid.Column="0" Grid.Row="0"
+                    Mode="PrimaryMid"
+                    Padding="16">
+                    <StackPanel  Orientation="Horizontal">
+                        <ToggleButton 
+                            Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                            CommandParameter="{x:Static Dock.Left}" />
+                        <TextBlock Name="tblkHeading" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16 0 0 0" />
+                    </StackPanel>
+                </materialDesign:ColorZone>
 
-        <StackPanel Background="Gray" Grid.Column="1" Grid.Row="0">
-            <TextBlock Name="tblkHeading" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Width="auto" />
-        </StackPanel>
-        <ScrollViewer Grid.Column="1" Grid.Row="1">
-            <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Padding="10" />
-        </ScrollViewer>
+                <ScrollViewer Grid.Column="1" Grid.Row="1">
+                    <Frame Name="mainFrame" NavigationUIVisibility="Hidden" Padding="10" />
+                </ScrollViewer>
+            </Grid>
+        </materialDesign:DrawerHost>
     </Grid>
 </Window>

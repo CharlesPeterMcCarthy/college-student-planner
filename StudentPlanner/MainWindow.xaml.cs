@@ -35,14 +35,14 @@ namespace StudentPlanner
             mainFrame.NavigationService.Navigate(mp);
         }
 
-        private void TblkPlanner_MouseDown(object sender, MouseButtonEventArgs e) {
+        private void TblkPlanner_MouseDown(object sender, RoutedEventArgs e) {
             MyPlanner mp = new MyPlanner(User.Planner);
 
             SetheadingText("My Planner");
             mainFrame.NavigationService.Navigate(mp);
         }
 
-        private void TblkAdd_MouseDown(object sender, MouseButtonEventArgs e) {
+        private void TblkAdd_MouseDown(object sender, RoutedEventArgs e) {
             AddTask at = new AddTask(User.Planner);
 
             SetheadingText("Add Task");
