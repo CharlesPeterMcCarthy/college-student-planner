@@ -60,7 +60,7 @@
                     Grid.Column="0" Grid.Row="0"
                     Mode="PrimaryMid"
                     Padding="16">
-                    <StackPanel  Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
                         <ToggleButton 
                             Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
                             Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
