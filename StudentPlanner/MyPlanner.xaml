@@ -9,21 +9,73 @@
       Title="MyPlanner">
 
     <Page.Resources>
-        <DataTemplate x:Key="TaskTemplate">
-            <StackPanel Name="task1" Background="LightGray">
-                <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontWeight="Bold" />
-                <TextBlock Text="{Binding Path=Description, Mode=OneWay}" />
-                <TextBlock Text="{Binding Path=DueDatetime, Mode=OneWay}" />
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Priority: " />
-                    <TextBlock Text="{Binding Path=Priority, Mode=OneWay}" VerticalAlignment="Center" />
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+
+        <DataTemplate x:Key="TaskTemplate" x:Name="TaskTemplate" DataType="{x:Type ListBoxItem}">
+            <Border Padding="4">
+                <StackPanel Name="mainPanel">
+                    <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" />
+
+                    <Grid Name="mainGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Description, Mode=OneWay}" />
+                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                            <Label Content="Priority: " />
+                            <TextBlock Text="{Binding Path=Priority, Mode=OneWay}" VerticalAlignment="Center" />
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
+                            <Label Content="Status: " />
+                            <TextBlock Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Path=DueDateReadable, Mode=OneWay}" />
+
+                        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="4">
+                            <Button Name="btnComplete" Content="Complete" Style="{StaticResource ButtonStyle}" />
+                            <Button Name="btnEdit" Content="Edit" Style="{StaticResource ButtonStyle}" />
+                            <Button Name="btnDelete" Content="Delete" Style="{StaticResource ButtonStyle}" />
+                        </StackPanel>
+                    </Grid>
+
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Status: " />
-                    <TextBlock Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" />
-                </StackPanel>
-            </StackPanel>
+            </Border>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=Priority}" Value="High">
+                    <Setter Property="Background" TargetName="mainPanel" Value="#FFBABB" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Priority}" Value="Medium">
+                    <Setter Property="Background" TargetName="mainPanel" Value="#FFE28A" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Priority}" Value="Low">
+                    <Setter Property="Background" TargetName="mainPanel" Value="#BFFFC1" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=IsComplete}" Value="true">
+                    <Setter Property="Background" TargetName="mainPanel" Value="DarkGray" />
+                    <Setter Property="Visibility" TargetName="mainGrid" Value="Collapsed" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
         </DataTemplate>
+
+        <Style x:Key="DayText" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignTitleTextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
     </Page.Resources>
 
     <Grid Name="mainGrid" Background="White">
@@ -47,22 +99,22 @@
             <Label Name="lblWeekNum" VerticalAlignment="Center" FontWeight="Bold" />
             <Button Content="Forward" Name="btnWeekForward" Margin="5" Padding="5" Width="100" Click="BtnWeekForward_Click"  />
         </StackPanel>
-        
-        <TextBlock Text="Monday" Grid.Row="1" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Text="Tuesday" Grid.Row="2" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Text="Wednesday" Grid.Row="3" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Text="Thursday" Grid.Row="4" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Text="Friday" Grid.Row="5" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Text="Saturday" Grid.Row="6" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        <TextBlock Text="Sunday" Grid.Row="7" Grid.Column="0" FontSize="20" FontWeight="bold" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
-        <ListBox Grid.Row="1" Grid.Column="1" Name="monList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
-        <ListBox Grid.Row="2" Grid.Column="1" Name="tuesList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
-        <ListBox Grid.Row="3" Grid.Column="1" Name="wedList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
-        <ListBox Grid.Row="4" Grid.Column="1" Name="thurList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
-        <ListBox Grid.Row="5" Grid.Column="1" Name="friList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
-        <ListBox Grid.Row="6" Grid.Column="1" Name="satList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
-        <ListBox Grid.Row="7" Grid.Column="1" Name="sunList" ItemTemplate="{StaticResource TaskTemplate}" SelectionChanged="DayList_SelectionChanged" />
+        <TextBlock Text="Monday" Grid.Row="1" Grid.Column="0" Style="{StaticResource DayText}" />
+        <TextBlock Text="Tuesday" Grid.Row="2" Grid.Column="0" Style="{StaticResource DayText}" />
+        <TextBlock Text="Wednesday" Grid.Row="3" Grid.Column="0" Style="{StaticResource DayText}" />
+        <TextBlock Text="Thursday" Grid.Row="4" Grid.Column="0" Style="{StaticResource DayText}" />
+        <TextBlock Text="Friday" Grid.Row="5" Grid.Column="0" Style="{StaticResource DayText}" />
+        <TextBlock Text="Saturday" Grid.Row="6" Grid.Column="0" Style="{StaticResource DayText}" />
+        <TextBlock Text="Sunday" Grid.Row="7" Grid.Column="0" Style="{StaticResource DayText}" />
+
+        <ListView Grid.Row="1" Grid.Column="1" Name="monList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="2" Grid.Column="1" Name="tuesList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="3" Grid.Column="1" Name="wedList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="4" Grid.Column="1" Name="thurList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="5" Grid.Column="1" Name="friList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="6" Grid.Column="1" Name="satList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
+        <ListBox Grid.Row="7" Grid.Column="1" Name="sunList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
 
     </Grid>
 </Page>

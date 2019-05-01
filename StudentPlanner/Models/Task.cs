@@ -36,6 +36,8 @@ namespace StudentPlanner.Models {
         public DateTime DueDatetime { get; private set; }
         public DateTime CreatedDatetime { get; private set; }
         public DateTime CompleteDatetime { get; private set; }
+        public string DueDateReadable { get { return DueDatetime.ToShortDateString(); } }
+        public bool IsComplete { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
