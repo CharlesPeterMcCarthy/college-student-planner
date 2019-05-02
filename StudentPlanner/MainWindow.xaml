@@ -74,5 +74,13 @@
                 </ScrollViewer>
             </Grid>
         </materialDesign:DrawerHost>
+        
+        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="ErrorPopup">
+            <materialDesign:DialogHost.DialogContent>
+                <Grid Margin="20">
+                    <TextBlock />
+                </Grid>
+            </materialDesign:DialogHost.DialogContent>
+        </materialDesign:DialogHost>
     </Grid>
 </Window>
