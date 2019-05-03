@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     public class ExamTask : Task, IStartableTask {
         //properties
-        public string Subject { get; private set; }
-        public int PercentageWorth { get; private set; }
-        public List<string> MaterialsNeeded { get; private set; }
-        public DateTime StartedDatetime { get; private set; }
-        public string Materials { get { return string.Join(", ", MaterialsNeeded); } }
+        public string Subject { get; set; }
+        public int PercentageWorth { get; set; }
+        public List<string> MaterialsNeeded { get; set; }
+        public DateTime StartedDatetime { get; set; }
+        public string Materials { get { return string.Join(", ", MaterialsNeeded); }
+            set { this.MaterialsNeeded = value.Split(',').ToList(); } }
         //referenced by the database
         public ExamTask(
             string title, string description, Priority priority, Status status,

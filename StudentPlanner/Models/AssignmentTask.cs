@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     public class AssignmentTask : Task, IStartableTask, IPausableTask {
         //properties
-        public string Subject { get; private set; }
-        public int PercentageWorth { get; private set; }
-        public DateTime PausedDatetime { get; private set; }
-        public DateTime StartedDatetime { get; private set; }
+        public string Subject { get; set; }
+        public int PercentageWorth { get; set; }
+        public DateTime PausedDatetime { get; set; }
+        public DateTime StartedDatetime { get; set; }
 
         //constructors
         //referenced by the database

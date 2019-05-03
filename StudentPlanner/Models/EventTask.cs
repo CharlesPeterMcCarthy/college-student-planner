@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     public class EventTask : Task, IStartableTask, IPausableTask {
         //properties
-        public string Location { get; private set; }
-        public DateTime StartedDatetime { get; private set; }
-        public DateTime PausedDatetime { get; private set; }
+        public string Location { get; set; }
+        public DateTime StartedDatetime { get; set; }
+        public DateTime PausedDatetime { get; set; }
         //referenced by the database
         public EventTask(
             string title, string description, Priority priority, Status status,

@@ -22,22 +22,22 @@ namespace StudentPlanner.Models {
     }
 
     public abstract class Task: INotifyPropertyChanged {
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public Priority Priority { get; private set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public Priority Priority { get; set; }
         private Status _status;
         public Status Status {
             get { return _status; }
-            protected set {
+            set {
                 _status = value;
                 RaisePropertyChanged("Status");
             }
-        }    // Protected set to allow child classes to update status
-        public DateTime DueDatetime { get; private set; }
-        public DateTime CreatedDatetime { get; private set; }
-        public DateTime CompleteDatetime { get; private set; }
+        }
+        public DateTime DueDatetime { get; set; }
+        public DateTime CreatedDatetime { get; set; }
+        public DateTime CompleteDatetime { get; set; }
         public string DueDateReadable { get { return DueDatetime.ToShortDateString(); } }
-        public bool IsComplete { get; private set; }
+        public bool IsComplete { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

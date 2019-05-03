@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace StudentPlanner.Models {
     public class PaymentTask : Task {
         //properties
-        public decimal Amount { get; private set; }
+        public decimal Amount { get; set; }
         //referenced by the database
         public PaymentTask(
             string title, string description, Priority priority, Status status,
