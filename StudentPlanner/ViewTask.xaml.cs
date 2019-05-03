@@ -2,6 +2,7 @@
 using StudentPlanner.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -24,6 +25,8 @@ namespace StudentPlanner {
 
         public ViewTask() {
             InitializeComponent();
+
+            SetComboBoxes();
         }
 
         public ViewTask(Task task): this() {
@@ -34,6 +37,11 @@ namespace StudentPlanner {
             taskInfo.Content = Task;
 
             UpdateButtonVisibility();
+        }
+
+        private void SetComboBoxes() {
+            cbxPriority.ItemsSource = Enum.GetNames(typeof(Priority));
+            cbxStatus.ItemsSource = Enum.GetNames(typeof(Status));
         }
 
         private void UpdateButtonVisibility() {
@@ -57,6 +65,7 @@ namespace StudentPlanner {
         }
 
         private void CompleteTask(object sender, RoutedEventArgs e) {
+
             Task.CompleteTask();
             UpdateButtonVisibility();
         }
