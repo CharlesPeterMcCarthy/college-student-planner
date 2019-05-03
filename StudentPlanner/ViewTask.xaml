@@ -9,6 +9,26 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ViewTask">
 
+    <Page.Resources>
+        <Style x:Key="LabelText" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignSubheadingTextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Padding" Value="0, 10, 40, 0" />
+        </Style>
+
+        <Style x:Key="EditValue" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="40, 0, 0, 0" />
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+            <Setter Property="Margin" Value="0, 0, 20, 0" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+
     <Grid Background="White" Name="taskGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -26,22 +46,41 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="60*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="Title" />
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Title, Mode=OneWay}" FontWeight="Bold" VerticalAlignment="Center" />
-            <Label Grid.Row="1" Grid.Column="0" Content="Description" />
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Description, Mode=OneWay}" VerticalAlignment="Center" />
-            <Label Grid.Row="2" Grid.Column="0" Content="Due" />
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=DueDatetime, Mode=OneWay}" VerticalAlignment="Center" />
-            <Label Grid.Row="3" Grid.Column="0" Content="Priority" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Priority, Mode=OneWay}" VerticalAlignment="Center" />
-            <Label Grid.Row="4" Grid.Column="0" Content="Status" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" FontWeight="Bold" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Title" Style="{StaticResource LabelText}" />
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Title, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+            
+            <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Description" Style="{StaticResource LabelText}" />
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Description, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+            <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Due Date" Style="{StaticResource LabelText}" />
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=DueDatetime, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+            <Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Priority" Style="{StaticResource LabelText}" />
+            <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Path=Priority, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+            <Separator Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="Status" Style="{StaticResource LabelText}" />
+            <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Path=Status, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+            <Separator Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
         </Grid>
 
         <ContentControl Name="taskInfo" Grid.Row="1">
@@ -52,20 +91,29 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="80*"/>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Subject" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Subject, Mode=OneWay}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Subject" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Subject, Mode=TwoWay}" Style="{StaticResource EditValue}" />
 
-                        <Label Grid.Row="1" Grid.Column="0" Content="Percentage" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=PercentageWorth, Mode=OneWay}" VerticalAlignment="Center" />
+                        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
 
-                        <Label Grid.Row="2" Grid.Column="0" Content="Materials Needed" />
-                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Materials, Mode=OneWay}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Percentage" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=PercentageWorth, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+                        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Materials Needed" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Materials, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+                        <Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:AssignmentTask}">
@@ -73,78 +121,97 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="80*"/>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Subject" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Subject, Mode=OneWay}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Subject" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Subject, Mode=TwoWay}" Style="{StaticResource EditValue}" />
 
-                        <Label Grid.Row="1" Grid.Column="0" Content="Percentage" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=PercentageWorth, Mode=OneWay}" VerticalAlignment="Center" />
+                        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Percentage" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=PercentageWorth, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+                        
+                        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:EventTask}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="80*"/>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Location" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Location, Mode=OneWay}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Location" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Location, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+                        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:PaymentTask}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20*"/>
-                            <ColumnDefinition Width="80*"/>
+                            <ColumnDefinition Width="40*"/>
+                            <ColumnDefinition Width="60*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" Content="Amount" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Amount, Mode=OneWay}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Amount" Style="{StaticResource LabelText}" />
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=Amount, Mode=TwoWay}" Style="{StaticResource EditValue}" />
+
+                        <Separator Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                     </Grid>
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
 
-        <ContentControl Name="btnStart" Grid.Row="2">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type models:ExamTask}">
-                    <Button Content="Start Exam" Click="StartTask" Width="200" HorizontalAlignment="Right" />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type models:AssignmentTask}">
-                    <Button Content="Start Assignment" Click="StartTask" Width="200" HorizontalAlignment="Right" />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type models:EventTask}">
-                    <Button Content="Start Event" Click="StartTask" Width="200" HorizontalAlignment="Right" />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type models:PaymentTask}" />
-            </ContentControl.Resources>
-        </ContentControl>
+        <Grid Grid.Row="2" HorizontalAlignment="Right" Margin="0, 40, 0, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <ContentControl Name="btnStart" Grid.Column="0">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type models:ExamTask}">
+                        <Button Content="Start Exam" Click="StartTask" Style="{StaticResource ActionButton}" />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type models:AssignmentTask}">
+                        <Button Content="Start Assignment" Click="StartTask" Style="{StaticResource ActionButton}" />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type models:EventTask}">
+                        <Button Content="Start Event" Click="StartTask" Style="{StaticResource ActionButton}" />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type models:PaymentTask}" />
+                </ContentControl.Resources>
+            </ContentControl>
 
-        <ContentControl Name="btnPause" Grid.Row="3">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type models:ExamTask}" />
-                <DataTemplate DataType="{x:Type models:AssignmentTask}">
-                    <Button Content="Pause Assignment" Click="PauseTask" Width="200" HorizontalAlignment="Right" />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type models:EventTask}">
-                    <Button Content="Pause Event" Click="PauseTask" Width="200" HorizontalAlignment="Right" />
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type models:PaymentTask}" />
-            </ContentControl.Resources>
-        </ContentControl>
+            <ContentControl Name="btnPause" Grid.Column="0">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type models:ExamTask}" />
+                    <DataTemplate DataType="{x:Type models:AssignmentTask}">
+                        <Button Content="Pause Assignment" Click="PauseTask" Style="{StaticResource ActionButton}" />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type models:EventTask}">
+                        <Button Content="Pause Event" Click="PauseTask" Style="{StaticResource ActionButton}" />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type models:PaymentTask}" />
+                </ContentControl.Resources>
+            </ContentControl>
 
-        <Button Name="completeButton" Grid.Row="4" Content="Complete" Click="CompleteTask" Width="200" HorizontalAlignment="Right" />
+            <Button Name="completeButton" Grid.Column="1" Content="Complete" Click="CompleteTask" Style="{StaticResource ActionButton}" />
+        </Grid>
     </Grid>
 </Page>
