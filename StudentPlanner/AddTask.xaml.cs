@@ -46,19 +46,18 @@ namespace StudentPlanner {
             string title = tblkTitle.Text;
             string description = tblkDescription.Text;
 
-
             try {
                 type = comboTaskType.SelectedItem.ToString();
                 priority = GetPriority();
             } catch (NullReferenceException err) {
-                PopupError("Please choose an option in all dropdown menus");
+                Toastr.Warning("Warning", "Please choose an option in all dropdown menus");
                 return;
             }
 
             try {
                 due = dueDate.SelectedDate.Value.Date;
             } catch (InvalidOperationException err) {
-                PopupError("Please select a valid date");
+                Toastr.Warning("Warning", "Please select a valid date");
                 return;
             }
             
@@ -70,27 +69,20 @@ namespace StudentPlanner {
                 SaveNewTask(newTask, weekNumber);
                 NavigationService.Navigate(new MyPlanner(Planner));
             }
-            else PopupError("Failed to create new task");
+            else Toastr.Error("Error", "Failed to create new task");
         }
 
-        private async void PopupError(string msg) {            
-            await DialogHost.Show(new TextBlock {
-                Text = msg,
-                Margin = new Thickness(20)
-            }, "ErrorPopup");
-        }
-
-        private Models.Task CreateNewTask(string type, string title, string description, Priority priority, DateTime due) {
+        private Task CreateNewTask(string type, string title, string description, Priority priority, DateTime due) {
             if (title.Length < 3) {
-                PopupError("Title length is too short");
+                Toastr.Warning("Warning", "Title length is too short");
                 return null;
             }
             if (description.Length < 10) {
-                PopupError("Description length is too short.");
+                Toastr.Warning("Warning", "Description length is too short.");
                 return null;
             }
             if (!DateService.DateAfterToday(due)) {
-                PopupError("The due date must be in the future.");
+                Toastr.Warning("Warning", "The due date must be in the future.");
                 return null;
             }
 
@@ -123,7 +115,7 @@ namespace StudentPlanner {
                     newTask = new PaymentTask(title, description, priority, due, now, amount);
                     break;
                 default:
-                    PopupError("Invalid task type.");
+                    Toastr.Error("Error", "Invalid task type.");
                     break;
             }
 
@@ -142,11 +134,11 @@ namespace StudentPlanner {
 
         private bool SaveNewTask(Models.Task newTask, int weekNumber) {
             if (newTask == null) {
-                PopupError("Task is not defined");
+                Toastr.Error("Error", "Task is not defined");
                 return false;
             }
             if (weekNumber < 1 || weekNumber > 52) {
-                PopupError("Invalid week number");
+                Toastr.Error("Error", "Invalid week number");
                 return false;
             }
 

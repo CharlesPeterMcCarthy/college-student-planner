@@ -55,7 +55,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!-- Top header -->
                 <materialDesign:ColorZone
                     Grid.Column="0" Grid.Row="0"
@@ -75,14 +75,6 @@
                 </ScrollViewer>
             </Grid>
         </materialDesign:DrawerHost>
-        
-        <materialDesign:DialogHost CloseOnClickAway="True" Identifier="ErrorPopup">
-            <materialDesign:DialogHost.DialogContent>
-                <Grid Margin="20">
-                    <TextBlock />
-                </Grid>
-            </materialDesign:DialogHost.DialogContent>
-        </materialDesign:DialogHost>
 
         <notifications:NotificationArea x:Name="WindowArea" Position="BottomRight" />
     </Grid>
