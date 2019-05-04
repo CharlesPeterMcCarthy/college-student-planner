@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Student Planner" Height="450" Width="800"
         Loaded="WindowLoaded"
+        xmlns:notifications="clr-namespace:Notifications.Wpf.Controls;assembly=Notifications.Wpf"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -82,5 +83,7 @@
                 </Grid>
             </materialDesign:DialogHost.DialogContent>
         </materialDesign:DialogHost>
+
+        <notifications:NotificationArea x:Name="WindowArea" Position="BottomRight" />
     </Grid>
 </Window>

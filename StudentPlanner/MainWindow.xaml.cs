@@ -13,8 +13,9 @@ namespace StudentPlanner
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e) {
-            Database.InsertAllTasks();
             User = Database.GetUser();
+
+            Toastr.TurnOnNotifications();
 
             MyPlanner mp = new MyPlanner(User.Planner);
 
