@@ -91,7 +91,6 @@ namespace StudentPlanner.Models {
         public string DueDateReadable { get { return DueDatetime.ToShortDateString(); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected void RaisePropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

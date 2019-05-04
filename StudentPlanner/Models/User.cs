@@ -5,33 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
-    public class User {
+    public static class User {
 
-        //properties
-        public string StudentID { get; private set; }
-        public string Name { get; private set; }
-        public DateTime DOB { get; private set; }
-        public int Age { get; private set; }
-        public Planner Planner { get; private set; }
-
-        public User(string studentID, string name, DateTime dob, Planner planner) : this(studentID, name, dob) {
-            Planner = planner;
+        public static string StudentID { get; set; }
+        public static string Name { get; set; }
+        public static DateTime DOB { get; set; }
+        public static int Age {
+            get {
+                DateTime today = DateTime.Today;
+                int age = today.Year - DOB.Year;
+                if (DOB > today.AddYears(-Age)) age--;
+                return age;
+            }
         }
 
-        public User(string studentID, string name, DateTime dob) {
-            StudentID = studentID;
-            Name = name;
-            DOB = dob;
+        public static Planner Planner { get; set; }
 
-            SetAge();
-        }
-
-        private void SetAge() {
-            DateTime today = DateTime.Today;
-            Age = today.Year - DOB.Year;
-
-            if (DOB > today.AddYears(-Age)) Age--;
-        }
-
-    }//end of the user class
+    }
 }

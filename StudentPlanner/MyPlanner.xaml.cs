@@ -95,5 +95,9 @@ namespace StudentPlanner {
             WeekNum++;
             DisplayThisWeeksTasks();
         }
+
+        private void AddTask_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new AddTask(Planner));
+        }
     }
 }

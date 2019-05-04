@@ -13,12 +13,17 @@ namespace StudentPlanner {
 
         private const string FILE = "database.json";
 
-        public static User GetUser() {
+        public static void GetUser() {
             List<Task> tasks = GetTasks();
             List<Week> weeks = SortTasks(tasks);
 
-            User u = new User("S00123456", "John", new DateTime(1998, 1, 12), new Planner(weeks));
-            return u;
+            User.Planner = new Planner(weeks);
+            User.StudentID = "S00123456";
+            User.Name = "John";
+            User.DOB = new DateTime(1998, 1, 12);
+
+            //User u = new User("S00123456", "John", new DateTime(1998, 1, 12), new Planner(weeks));
+            //return u;
         }
 
         private static List<Week> SortTasks(List<Task> tasks) {
@@ -55,7 +60,16 @@ namespace StudentPlanner {
             return tasks;
         }
 
-        public static void SaveTasks(List<Task> tasks) {
+        public static void SaveTasks() {
+            List<Task> tasks = new List<Task>();
+            List<Week> weeks = User.Planner.Weeks;
+
+            foreach (Week w in weeks) {
+                foreach(Day d in w.Days) {
+                    tasks.AddRange(d.Tasks);
+                }
+            }
+
             using (StreamWriter sw = File.CreateText(FILE)) {
                 sw.Write(JsonConvert.SerializeObject(tasks, Formatting.Indented, new JsonSerializerSettings {
                     TypeNameHandling = TypeNameHandling.Auto

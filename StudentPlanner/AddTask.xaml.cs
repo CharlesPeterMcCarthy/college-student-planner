@@ -30,7 +30,6 @@ namespace StudentPlanner {
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            //check what has been selected 
             string selected = comboTaskType.SelectedItem.ToString();
 
             Assignment.Visibility = selected == "Assignment" ? Visibility.Visible : Visibility.Collapsed;
@@ -132,7 +131,7 @@ namespace StudentPlanner {
             else return Priority.Low;
         }
 
-        private bool SaveNewTask(Models.Task newTask, int weekNumber) {
+        private bool SaveNewTask(Task newTask, int weekNumber) {
             if (newTask == null) {
                 Toastr.Error("Error", "Task is not defined");
                 return false;
@@ -160,6 +159,8 @@ namespace StudentPlanner {
 
                 Planner.AddWeek(week);
             }
+
+            Database.SaveTasks();
 
             return true;
         }

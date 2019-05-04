@@ -1,11 +1,11 @@
 ﻿using StudentPlanner.Models;
+using System.ComponentModel;
 using System.Windows;
 
-namespace StudentPlanner
-{
-    public partial class MainWindow : Window
-    {
-        private User User { get; set; }
+namespace StudentPlanner {
+    public partial class MainWindow : Window {
+
+        //public User User { get; set; }
 
         public MainWindow()
         {
@@ -13,7 +13,7 @@ namespace StudentPlanner
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e) {
-            User = Database.GetUser();
+            Database.GetUser();
 
             Toastr.TurnOnNotifications();
 

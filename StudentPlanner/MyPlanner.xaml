@@ -28,6 +28,10 @@
             <Setter Property="Padding" Value="2" />
         </Style>
 
+        <Style x:Key="NewTaskButton" TargetType="{x:Type Border}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
         <Style x:Key="DayBorder" TargetType="{x:Type Border}">
             <Setter Property="Padding" Value="12" />
             <Setter Property="BorderThickness" Value="1" />
@@ -55,6 +59,15 @@
                 <StackPanel>
                     <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" />
                     <Separator Style="{StaticResource MaterialDesignDarkSeparator}" />
+                    <!--<Button
+                        Grid.Row="0"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0 -30 0 0">
+                        <materialDesign:PackIcon Kind="Bike" />
+                    </Button>-->
+                    
                     <Grid Name="mainGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -95,7 +108,7 @@
                 </StackPanel>
             </materialDesign:Card>
 
-            <DataTemplate.Triggers>
+            <!--<DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=Priority}" Value="High">
                     <Setter Property="Background" TargetName="mainPanel" Value="#FFBABB" />
                 </DataTrigger>
@@ -109,12 +122,13 @@
                     <Setter Property="Background" TargetName="mainPanel" Value="DarkGray" />
                     <Setter Property="Visibility" TargetName="mainGrid" Value="Collapsed" />
                 </DataTrigger>
-            </DataTemplate.Triggers>
+            </DataTemplate.Triggers>-->
         </DataTemplate>
     </Page.Resources>
 
     <Grid Name="mainGrid" Background="White">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -129,7 +143,7 @@
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Padding="10" Grid.Row="0" Grid.ColumnSpan="2">
+        <Border Padding="10" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Name="btnWeekBack" Click="BtnWeekBack_Click" Style="{StaticResource NavButton}">
                     <StackPanel Orientation="Horizontal">
@@ -155,7 +169,43 @@
             </StackPanel>
         </Border>
 
-        <Border Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <!--<materialDesign:PopupBox
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="0, -54, 10, 0"
+            Style="{StaticResource MaterialDesignMultiFloatingActionPopupBox}"
+            Width="45"
+            Height="45"
+            PlacementMode="BottomAndAlignCentres"
+            ToolTipService.Placement="Right"
+            HorizontalAlignment="Right"
+            ToolTip="PopupBox, Style MaterialDesignMultiFloatingActionPopupBox">
+            <StackPanel>
+                <Button ToolTip="One with custom opacity" Opacity="0.5">
+                    Low
+                </Button>
+                <Button ToolTip="Two">
+                    Medium
+                </Button>
+                <Button ToolTip="Three">
+                    High
+                </Button>
+            </StackPanel>
+        </materialDesign:PopupBox>-->
+        
+        <Button
+            Grid.Column="1"
+            Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+            HorizontalAlignment="Right"
+            Margin="0, 0, 5, 0"
+            Name="AddTask" Click="AddTask_Click">
+            <materialDesign:PackIcon
+                Kind="Plus"
+                Height="24"
+                Width="24" />
+        </Button>
+
+        <Border Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
@@ -166,7 +216,7 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <Border Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
@@ -177,7 +227,7 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <Border Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
@@ -188,7 +238,7 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <Border Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
@@ -199,7 +249,7 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <Border Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
@@ -210,7 +260,7 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <Border Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
@@ -221,7 +271,7 @@
             </Grid>
         </Border>
 
-        <Border Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
+        <Border Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource DayBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Style="{StaticResource DayTextWidth}" />
