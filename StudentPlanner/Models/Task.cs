@@ -97,6 +97,7 @@ namespace StudentPlanner.Models {
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName) {
+            Database.SaveTasks();
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

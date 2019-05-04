@@ -5,8 +5,6 @@ using System.Windows;
 namespace StudentPlanner {
     public partial class MainWindow : Window {
 
-        //public User User { get; set; }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -16,6 +14,7 @@ namespace StudentPlanner {
             Database.GetDatabaseConent();
 
             Toastr.TurnOnNotifications();
+            Database.TurnOnSaving();
 
             MyPlanner mp = new MyPlanner(User.Planner);
 

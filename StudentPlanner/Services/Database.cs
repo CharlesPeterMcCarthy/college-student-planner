@@ -13,6 +13,11 @@ namespace StudentPlanner {
 
         private const string TASKS_FILE = "tasks.json";
         private const string USER_FILE = "user.json";
+        private static bool canSave = false;
+
+        public static void TurnOnSaving() {
+            canSave = true;
+        }
 
         public static void GetDatabaseConent() {
             GetUser();
@@ -69,6 +74,7 @@ namespace StudentPlanner {
         }
 
         public static void SaveTasks() {
+            if (!canSave) return;
             List<Task> tasks = new List<Task>();
             List<Week> weeks = User.Planner.Weeks;
 
