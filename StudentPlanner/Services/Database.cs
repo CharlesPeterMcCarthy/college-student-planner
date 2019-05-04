@@ -11,19 +11,27 @@ namespace StudentPlanner {
 
     class Database {
 
-        private const string FILE = "database.json";
+        private const string TASKS_FILE = "tasks.json";
+        private const string USER_FILE = "user.json";
 
-        public static void GetUser() {
+        public static void GetDatabaseConent() {
+            GetUser();
             List<Task> tasks = GetTasks();
             List<Week> weeks = SortTasks(tasks);
 
             User.Planner = new Planner(weeks);
-            User.StudentID = "S00123456";
-            User.Name = "John";
-            User.DOB = new DateTime(1998, 1, 12);
+        }
 
-            //User u = new User("S00123456", "John", new DateTime(1998, 1, 12), new Planner(weeks));
-            //return u;
+        private static void GetUser() {
+            using (StreamReader sr = new StreamReader(USER_FILE)) {
+                string json = sr.ReadToEnd();
+
+                var user = JsonConvert.DeserializeObject<dynamic>(json);
+
+                User.StudentID = user.StudentID;
+                User.Name = user.Name;
+                User.DOB = user.DOB;
+            }
         }
 
         private static List<Week> SortTasks(List<Task> tasks) {
@@ -49,7 +57,7 @@ namespace StudentPlanner {
         private static List<Task> GetTasks() {
             List<Task> tasks = new List<Task>();
 
-            using (StreamReader sr = new StreamReader(FILE)) {
+            using (StreamReader sr = new StreamReader(TASKS_FILE)) {
                 string json = sr.ReadToEnd();
 
                 if (json.Length > 0) tasks = JsonConvert.DeserializeObject<List<Task>>(json, new JsonSerializerSettings {
@@ -70,7 +78,7 @@ namespace StudentPlanner {
                 }
             }
 
-            using (StreamWriter sw = File.CreateText(FILE)) {
+            using (StreamWriter sw = File.CreateText(TASKS_FILE)) {
                 sw.Write(JsonConvert.SerializeObject(tasks, Formatting.Indented, new JsonSerializerSettings {
                     TypeNameHandling = TypeNameHandling.Auto
                 }));

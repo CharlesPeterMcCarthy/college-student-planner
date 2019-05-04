@@ -13,7 +13,7 @@ namespace StudentPlanner {
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e) {
-            Database.GetUser();
+            Database.GetDatabaseConent();
 
             Toastr.TurnOnNotifications();
 
