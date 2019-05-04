@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class PaymentTask : Task {
+
         private decimal _amount;
 
         public decimal Amount {
             get { return _amount; }
-            set { _amount = value; RaisePropertyChanged("Amount"); }
+            set {
+                _amount = value;
+                RaisePropertyChanged("Amount");
+                Toastr.Success("Updated", "The payment amount has been updated");
+            }
         }
 
         public PaymentTask() { }
@@ -29,8 +34,5 @@ namespace StudentPlanner.Models {
             Amount = amount;
         }
 
-        public void UpdatePaymentAmount(decimal amount) {
-            Amount = amount;
-        }     
     }
 }

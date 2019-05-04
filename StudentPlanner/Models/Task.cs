@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
 
@@ -22,6 +18,7 @@ namespace StudentPlanner.Models {
     }
 
     public abstract class Task: INotifyPropertyChanged {
+
         private string _title;
         private string _description;
         private Priority _priority;
@@ -31,38 +28,64 @@ namespace StudentPlanner.Models {
         private DateTime _completeDatetime;
         private bool _isComplete;
 
-
         public string Title {
             get { return _title; }
-            set { _title = value; RaisePropertyChanged("Title"); }
+            set {
+                _title = value;
+                RaisePropertyChanged("Title");
+                Toastr.Success("Updated", "The task title has been updated");
+            }
         }
         public string Description {
             get { return _description; }
-            set { _description = value; RaisePropertyChanged("Description"); }
+            set {
+                _description = value;
+                RaisePropertyChanged("Description");
+                Toastr.Success("Updated", "The task description has been updated");
+            }
         }
         public Priority Priority {
             get { return _priority; }
-            set { _priority = value; RaisePropertyChanged("Priority"); }
+            set {
+                _priority = value;
+                RaisePropertyChanged("Priority");
+                Toastr.Success("Updated", "The task priority has been updated");
+            }
         }
         public Status Status {
             get { return _status; }
-            set { _status = value; RaisePropertyChanged("Status"); }
+            set {
+                _status = value;
+                RaisePropertyChanged("Status");
+            }
         }
         public DateTime DueDatetime {
             get { return _dueDatetime; }
-            set { _dueDatetime = value; RaisePropertyChanged("DueDatetime"); RaisePropertyChanged("DueDateReadable"); }
+            set {
+                _dueDatetime = value;
+                RaisePropertyChanged("DueDatetime");
+                RaisePropertyChanged("DueDateReadable");
+                Toastr.Success("Updated", "The task due date has been updated");
+            }
         }
         public DateTime CreatedDatetime {
             get { return _createdDatetime; }
-            set { _createdDatetime = value; RaisePropertyChanged("CreatedDatetime"); }
+            set { _createdDatetime = value; }
         }
         public DateTime CompleteDatetime {
             get { return _completeDatetime; }
-            set { _completeDatetime = value; RaisePropertyChanged("CompleteDatetime"); }
+            set {
+                _completeDatetime = value;
+                RaisePropertyChanged("CompleteDatetime");
+            }
         }
         public bool IsComplete {
             get { return _isComplete; }
-            set { _isComplete = value; RaisePropertyChanged("IsComplete"); }
+            set {
+                _isComplete = value;
+                RaisePropertyChanged("IsComplete");
+                Toastr.Success("Updated", "The task has been complete");
+            }
         }
 
         public string DueDateReadable { get { return DueDatetime.ToShortDateString(); } }
@@ -92,24 +115,15 @@ namespace StudentPlanner.Models {
             Status = Status.NotStarted;
         }
 
-        public void UpdatePriority(Priority priority) {
-            Priority = priority;
-        }
-
-        public Status CompleteTask() {
+        public void CompleteTask() {
             Status = Status.Complete;
             CompleteDatetime = DateTime.Now;
-            
-            return Status;
+            Toastr.Success("Complete", "The task has been marked as complete");
         }
 
-        public Status CancelTask() {
+        public void CancelTask() {
             Status = Status.Cancelled;
-            return Status;
-        }
-
-        public void UpdateDueDatetime(DateTime dt) {
-            DueDatetime = dt;
+            Toastr.Info("Cancelled", "The task has been cancelled");
         }
 
         public override string ToString() {

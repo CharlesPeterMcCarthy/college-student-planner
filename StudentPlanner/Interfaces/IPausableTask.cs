@@ -9,6 +9,6 @@ namespace StudentPlanner.Interfaces {
     interface IPausableTask {
         DateTime PausedDatetime { get; }
 
-        Status PauseTask();
+        void PauseTask();
     }
 }

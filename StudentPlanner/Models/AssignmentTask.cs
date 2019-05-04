@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class AssignmentTask : Task, IStartableTask, IPausableTask {
+
         private string _subject;
         private int _percentageWorth;
         private DateTime _pausedDatetime;
@@ -15,19 +16,33 @@ namespace StudentPlanner.Models {
 
         public string Subject {
             get { return _subject; }
-            set { _subject = value; RaisePropertyChanged("Subject"); }
+            set {
+                _subject = value;
+                RaisePropertyChanged("Subject");
+                Toastr.Success("Updated", "The assignment subject has been updated");
+            }
         }
         public int PercentageWorth {
             get { return _percentageWorth; }
-            set { _percentageWorth = value; RaisePropertyChanged("PercentageWorth"); }
+            set {
+                _percentageWorth = value;
+                RaisePropertyChanged("PercentageWorth");
+                Toastr.Success("Updated", "The assignment percentage worth has been updated");
+            }
         }
         public DateTime PausedDatetime {
             get { return _pausedDatetime; }
-            set { _pausedDatetime = value; RaisePropertyChanged("PausedDatetime"); }
+            set {
+                _pausedDatetime = value;
+                RaisePropertyChanged("PausedDatetime");
+            }
         }
         public DateTime StartedDatetime {
             get { return _startedDatetime; }
-            set { _startedDatetime = value; RaisePropertyChanged("StartedDatetime"); }
+            set {
+                _startedDatetime = value;
+                RaisePropertyChanged("StartedDatetime");
+            }
         }
 
         public AssignmentTask() { }
@@ -41,7 +56,7 @@ namespace StudentPlanner.Models {
             PercentageWorth = percentageWorth;
             StartedDatetime = startedDatetime;
         }
-        //referenced by the AddTask.xaml.cs
+
         public AssignmentTask(
             string title, string description, Priority priority,
             DateTime dueDatetime, DateTime createdDatetime, string subject,
@@ -51,18 +66,17 @@ namespace StudentPlanner.Models {
             PercentageWorth = percentageWorth;
         }
 
-        public Status PauseTask() {
+        public void PauseTask() {
             Status = Status.Paused;
             PausedDatetime = DateTime.Now;
-
-            return Status;
+            Toastr.Info("Paused", "The '" + Title + "' task has been paused");
         }
 
-        public Status StartTask() {
+        public void StartTask() {
             Status = Status.Started;
             StartedDatetime = DateTime.Now;
-
-            return Status;
+            Toastr.Info("Started", "The '" + Title + "' task has been started");
         }
-    }//end of Assignment Class
+
+    }
 }

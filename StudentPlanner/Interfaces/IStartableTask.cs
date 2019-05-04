@@ -9,6 +9,6 @@ namespace StudentPlanner.Interfaces {
     interface IStartableTask {
         DateTime StartedDatetime { get; }
 
-        Status StartTask();
+        void StartTask();
     }
 }

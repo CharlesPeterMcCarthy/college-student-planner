@@ -7,21 +7,32 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class EventTask : Task, IStartableTask, IPausableTask {
+
         private string _location;
         private DateTime _startedDatetime;
         private DateTime _pausedDatetime;
 
         public string Location {
             get { return _location; }
-            set { _location = value; RaisePropertyChanged("Location"); }
+            set {
+                _location = value;
+                RaisePropertyChanged("Location");
+                Toastr.Success("Updated", "The event location has been updated");
+            }
         }
         public DateTime PausedDatetime {
             get { return _pausedDatetime; }
-            set { _pausedDatetime = value; RaisePropertyChanged("PausedDatetime"); }
+            set {
+                _pausedDatetime = value;
+                RaisePropertyChanged("PausedDatetime");
+            }
         }
         public DateTime StartedDatetime {
             get { return _startedDatetime; }
-            set { _startedDatetime = value; RaisePropertyChanged("StartedDatetime"); }
+            set {
+                _startedDatetime = value;
+                RaisePropertyChanged("StartedDatetime");
+            }
         }
 
         public EventTask() { }
@@ -32,34 +43,25 @@ namespace StudentPlanner.Models {
         ) : base(title, description, priority, status, dueDatetime, createdDatetime) {
             Location = location;
         }
-        //referenced by AddTask.xaml.cs
+
         public EventTask(
             string title, string description, Priority priority,
             DateTime dueDatetime, DateTime createdDatetime, string location
-        ) : base(title, description, priority, dueDatetime, createdDatetime)
-        {
+        ) : base(title, description, priority, dueDatetime, createdDatetime) {
             Location = location;
         }
 
-        //methods
-        public Status PauseTask() {
+        public void PauseTask() {
             Status = Status.Paused;
             PausedDatetime = DateTime.Now;
-
-            return Status;
+            Toastr.Info("Paused", "The '" + Title + "' task has been paused");
         }
 
-        public Status StartTask() {
+        public void StartTask() {
             Status = Status.Started;
             StartedDatetime = DateTime.Now;
-
-            return Status;
+            Toastr.Info("Started", "The '" + Title + "' task has been started");
         }
 
-        public void UpdateLocation(string location)
-        {
-            Location = location;
-        }//end of update location methods
-
-    }//end of event class
+    }
 }

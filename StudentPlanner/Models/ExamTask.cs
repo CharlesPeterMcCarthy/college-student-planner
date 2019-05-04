@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class ExamTask : Task, IStartableTask {
+
         private string _subject;
         private int _percentageWorth;
         private List<string> _materialsNeeded;
@@ -14,22 +15,41 @@ namespace StudentPlanner.Models {
 
         public List<string> MaterialsNeeded {
             get { return _materialsNeeded; }
-            set { _materialsNeeded = value; RaisePropertyChanged("MaterialsNeeded"); }
+            set {
+                _materialsNeeded = value;
+                RaisePropertyChanged("MaterialsNeeded");
+                Toastr.Success("Updated", "The exam materials have been updated");
+            }
         }
         public string Materials { get { return string.Join(", ", MaterialsNeeded); }
-            set { this.MaterialsNeeded = value.Split(',').Select(s => s.Trim()).ToList(); RaisePropertyChanged("Materials"); } }
+            set {
+                this.MaterialsNeeded = value.Split(',').Select(s => s.Trim()).ToList();
+                RaisePropertyChanged("Materials");
+            }
+        }
 
         public string Subject {
             get { return _subject; }
-            set { _subject = value; RaisePropertyChanged("Subject"); }
+            set {
+                _subject = value;
+                RaisePropertyChanged("Subject");
+                Toastr.Success("Updated", "The exam subject has been updated");
+            }
         }
         public int PercentageWorth {
             get { return _percentageWorth; }
-            set { _percentageWorth = value; RaisePropertyChanged("PercentageWorth"); }
+            set {
+                _percentageWorth = value;
+                RaisePropertyChanged("PercentageWorth");
+                Toastr.Success("Updated", "The exam percentage worth has been updated");
+            }
         }
         public DateTime StartedDatetime {
             get { return _startedDatetime; }
-            set { _startedDatetime = value; RaisePropertyChanged("StartedDatetime"); }
+            set {
+                _startedDatetime = value;
+                RaisePropertyChanged("StartedDatetime");
+            }
         }
 
         public ExamTask() { }
@@ -43,7 +63,7 @@ namespace StudentPlanner.Models {
             PercentageWorth = percentageWorth;
             MaterialsNeeded = materialsNeeded;
         }
-        //referenced by AddTask.xaml.cs
+
         public ExamTask(
             string title, string description, Priority priority,
             DateTime dueDatetime, DateTime createdDatetime, string subject,
@@ -54,17 +74,11 @@ namespace StudentPlanner.Models {
             MaterialsNeeded = materialsNeeded;
         }
 
-        //methods
-        public Status StartTask() {
+        public void StartTask() {
             Status = Status.Started;
             StartedDatetime = DateTime.Now;
-
-            return Status;
+            Toastr.Info("Started", "The '" + Title + "' task has been started");
         }
 
-        public void AddMaterial(string material)
-        {
-            MaterialsNeeded.Add(material);
-        }//end of add materials method
-    }//end of exam class
+    }
 }
