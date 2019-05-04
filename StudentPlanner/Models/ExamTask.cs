@@ -17,7 +17,7 @@ namespace StudentPlanner.Models {
             set { _materialsNeeded = value; RaisePropertyChanged("MaterialsNeeded"); }
         }
         public string Materials { get { return string.Join(", ", MaterialsNeeded); }
-            set { this.MaterialsNeeded = value.Split(',').ToList(); RaisePropertyChanged("Materials"); } }
+            set { this.MaterialsNeeded = value.Split(',').Select(s => s.Trim()).ToList(); RaisePropertyChanged("Materials"); } }
 
         public string Subject {
             get { return _subject; }
