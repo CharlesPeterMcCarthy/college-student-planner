@@ -11,7 +11,11 @@ namespace StudentPlanner.Models {
         public string Location { get; set; }
         public DateTime StartedDatetime { get; set; }
         public DateTime PausedDatetime { get; set; }
+
         //referenced by the database
+
+        public EventTask() { }
+
         public EventTask(
             string title, string description, Priority priority, Status status,
             DateTime dueDatetime, DateTime createdDatetime, string location

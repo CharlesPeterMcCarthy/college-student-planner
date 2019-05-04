@@ -13,8 +13,8 @@ namespace StudentPlanner
         }
 
         private void WindowLoaded(object sender, RoutedEventArgs e) {
-            Database db = new Database();
-            User = db.GetUser();
+            Database.InsertAllTasks();
+            User = Database.GetUser();
 
             MyPlanner mp = new MyPlanner(User.Planner);
 

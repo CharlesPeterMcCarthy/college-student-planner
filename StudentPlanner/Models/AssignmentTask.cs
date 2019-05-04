@@ -15,6 +15,9 @@ namespace StudentPlanner.Models {
 
         //constructors
         //referenced by the database
+
+        public AssignmentTask() { }
+
         public AssignmentTask(
             string title, string description, Priority priority, Status status,
             DateTime dueDatetime, DateTime createdDatetime, string subject,

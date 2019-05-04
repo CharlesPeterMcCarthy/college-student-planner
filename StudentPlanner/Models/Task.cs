@@ -45,6 +45,8 @@ namespace StudentPlanner.Models {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public Task() { }
+
         public Task(
             string title, string description, Priority priority,
             Status status, DateTime dueDatetime, DateTime createdDatetime

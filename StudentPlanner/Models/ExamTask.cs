@@ -14,7 +14,11 @@ namespace StudentPlanner.Models {
         public DateTime StartedDatetime { get; set; }
         public string Materials { get { return string.Join(", ", MaterialsNeeded); }
             set { this.MaterialsNeeded = value.Split(',').ToList(); } }
+
         //referenced by the database
+
+        public ExamTask() { }
+
         public ExamTask(
             string title, string description, Priority priority, Status status,
             DateTime dueDatetime, DateTime createdDatetime, string subject,
