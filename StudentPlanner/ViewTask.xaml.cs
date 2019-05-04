@@ -41,7 +41,6 @@ namespace StudentPlanner {
 
         private void SetComboBoxes() {
             cbxPriority.ItemsSource = Enum.GetNames(typeof(Priority));
-            cbxStatus.ItemsSource = Enum.GetNames(typeof(Status));
         }
 
         private void UpdateButtonVisibility() {

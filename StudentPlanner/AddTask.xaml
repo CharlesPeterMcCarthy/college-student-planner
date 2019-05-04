@@ -9,11 +9,44 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AddTask">
-   
+
+    <Page.Resources>
+        <Style x:Key="LabelText" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MaterialDesignSubheadingTextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Padding" Value="0, 10, 40, 0" />
+        </Style>
+
+        <Style x:Key="EditValue" TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0, 10, 0, 0" />
+        </Style>
+
+        <Style x:Key="EditDate" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0, 10, 0, 0" />
+        </Style>
+
+        <Style x:Key="EditComboBox" TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="Margin" Value="0, 10, 0, 0" />
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="{x:Type Button}" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+            <Setter Property="Margin" Value="20, 0, 0, 0" />
+            <Setter Property="Width" Value="160" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -24,63 +57,102 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <Label Content="Select Type:" Grid.Column="0" Grid.Row="0"></Label>
-        <ComboBox Grid.Column="1" Grid.Row="0" Width="200" SelectionChanged="ComboBox_SelectionChanged"
-            Text="--Choose Type--" Name="comboTaskType" IsEditable="True" IsReadOnly="True" />
+        <ComboBox
+            Grid.Row="0"
+            Grid.Column="1"
+            IsEditable="True"
+            IsReadOnly="True"
+            Style="{StaticResource EditComboBox}"
+            materialDesign:HintAssist.Hint="Task Type" 
+            SelectionChanged="ComboBox_SelectionChanged"
+            Name="comboTaskType" />
 
-        <Label Content="Title:" Grid.Column="0" Grid.Row="1"></Label>
-        <TextBox Grid.Column="1" Grid.Row="1" Width="200" Name="tblkTitle" ></TextBox>
-        
-        <Label Content="Description:" Grid.Column="0" Grid.Row="2"></Label>
-        <TextBox Grid.Column="1" Grid.Row="2" Width="200" Name="tblkDescription"></TextBox>
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Style="{StaticResource EditValue}"
+            materialDesign:HintAssist.Hint="Title"
+            Name="tblkTitle" />
 
-        <Label Content="Priority" Grid.Column="0" Grid.Row="3"></Label>
-        <ComboBox Grid.Column="1" Grid.Row="3" Width="200" Name="comboPriority"
-            Text="--Choose Priority--" IsEditable="True" IsReadOnly="True" />
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Style="{StaticResource EditValue}"
+            materialDesign:HintAssist.Hint="Description"
+            TextWrapping="Wrap"
+            VerticalAlignment="Stretch"
+            AcceptsReturn="True"
+            VerticalScrollBarVisibility="Auto"
+            SpellCheck.IsEnabled="True"
+            Name="tblkDescription" />
 
-        <Label Content="Due" Grid.Column="0" Grid.Row="4"></Label>
-        <DatePicker Grid.Column="1" Grid.Row="4" Width="200" Name="dueDate" />
+        <ComboBox
+            Grid.Row="3"
+            Grid.Column="1"
+            IsEditable="True"
+            IsReadOnly="True"
+            Style="{StaticResource EditComboBox}"
+            materialDesign:HintAssist.Hint="Priority" 
+            Name="comboPriority" />
 
-        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="Assignment" Visibility="Hidden">
+        <DatePicker
+            Grid.Row="4"
+            Grid.Column="1"
+            Style="{StaticResource EditDate}"
+            materialDesign:HintAssist.Hint="Due Date"
+            Name="dueDate" />
+
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Name="Assignment" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="Subject:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxSubject"></TextBox>
-            <Label Grid.Column="0" Grid.Row="1" Content="Percentage Worth:" ></Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Width="200" Name="tbxPercentage"></TextBox>
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Subject"
+                Name="tbxSubject" />
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Percentage"
+                Name="tbxPercentage" />
         </Grid>
 
-        <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="Event" Visibility="Hidden">
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Name="Event" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="Location:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxLocation"></TextBox>
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Location"
+                Name="tbxLocation" />
         </Grid>
 
-        <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="Exam" Visibility="Hidden">
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Name="Exam" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
@@ -88,35 +160,53 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="Subject:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxSubjectExam"></TextBox>
-            <Label Grid.Column="0" Grid.Row="1" Content="Percentage Worth:" ></Label>
-            <TextBox Grid.Column="1" Grid.Row="1" Width="200" Name="tbxPercentExam"></TextBox>
-            <Label Grid.Column="0" Grid.Row="2" Content="Materials Needed:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="2" Width="200" Name="tbxMaterials"></TextBox>
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Subject"
+                Name="tbxSubjectExam" />
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Percentage"
+                Name="tbxPercentExam" />
+
+            <TextBox
+                Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Materials Needed"
+                Name="tbxMaterials" />
         </Grid>
 
-        <Grid Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="Payment" Visibility="Hidden">
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" Name="Payment" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Content="Amount:"></Label>
-            <TextBox Grid.Column="1" Grid.Row="0" Width="200" Name="tbxAmount"></TextBox>
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Style="{StaticResource EditValue}"
+                materialDesign:HintAssist.Hint="Amount"
+                Name="tbxAmount" />
         </Grid>
 
         <Button
-            Click="Button_Click"
-            Grid.Column="1" Grid.Row="11"
-            Style="{StaticResource MaterialDesignRaisedButton}"
-            Width="150"
-            Content="Submit">
-        </Button>
-
-        <TextBlock Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Name="tblkCreated" Text="Task Created" Visibility="Hidden" />
+            Click="SaveTask"
+            Grid.Column="1"
+            Grid.Row="6"
+            HorizontalAlignment="Right"
+            Margin="0, 40, 0, 0"
+            Style="{StaticResource ActionButton}"
+            Content="Save Task" />
     </Grid>
 </Page>

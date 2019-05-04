@@ -1,19 +1,8 @@
 ﻿using StudentPlanner.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using StudentPlanner.Models;
 using MaterialDesignThemes.Wpf;
 
 namespace StudentPlanner {
@@ -44,13 +33,13 @@ namespace StudentPlanner {
             //check what has been selected 
             string selected = comboTaskType.SelectedItem.ToString();
 
-            Assignment.Visibility = selected == "Assignment" ? Visibility.Visible : Visibility.Hidden;
-            Event.Visibility = selected == "Event" ? Visibility.Visible : Visibility.Hidden;
-            Exam.Visibility = selected == "Exam" ? Visibility.Visible : Visibility.Hidden;
-            Payment.Visibility = selected == "Payment" ? Visibility.Visible : Visibility.Hidden;
+            Assignment.Visibility = selected == "Assignment" ? Visibility.Visible : Visibility.Collapsed;
+            Event.Visibility = selected == "Event" ? Visibility.Visible : Visibility.Collapsed;
+            Exam.Visibility = selected == "Exam" ? Visibility.Visible : Visibility.Collapsed;
+            Payment.Visibility = selected == "Payment" ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
+        private void SaveTask(object sender, RoutedEventArgs e) {
             string type = "";
             Priority priority = Priority.Low;
             DateTime due = DateTime.Now;
@@ -73,12 +62,13 @@ namespace StudentPlanner {
                 return;
             }
             
-            Models.Task newTask = CreateNewTask(type, title, description, priority, due);
+            Task newTask = CreateNewTask(type, title, description, priority, due);
 
             if (newTask != null) {
                 int weekNumber = DateService.GetWeekNumber(newTask.DueDatetime);
 
                 SaveNewTask(newTask, weekNumber);
+                NavigationService.Navigate(new MyPlanner(Planner));
             }
             else PopupError("Failed to create new task");
         }
@@ -137,7 +127,7 @@ namespace StudentPlanner {
                     break;
             }
 
-            if (newTask != null) tblkCreated.Visibility = Visibility.Visible;
+            if (newTask != null) Toastr.Success("Created", "The '" + title + "' task has been created");
             
             return newTask;
         }
