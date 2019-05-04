@@ -32,6 +32,7 @@ namespace StudentPlanner {
                 if (value < 1) value = 52;
                 _weekNum = value;
                 lblWeekNum.Text = "Week\n#" + _weekNum;
+                lblWeekNum2.Text = "Week\n#" + _weekNum;
             }
         }
 

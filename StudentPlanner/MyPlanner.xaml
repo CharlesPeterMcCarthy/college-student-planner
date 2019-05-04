@@ -59,18 +59,23 @@
                 <StackPanel>
                     <TextBlock Text="{Binding Path=Title, Mode=OneWay}" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" />
                     <Separator Style="{StaticResource MaterialDesignDarkSeparator}" />
-                    <!--<Button
+                    <materialDesign:Chip
                         Grid.Row="0"
-                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Width="100"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Padding="4"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
-                        Margin="0 -30 0 0">
-                        <materialDesign:PackIcon Kind="Bike" />
-                    </Button>-->
-                    
+                        Margin="0 -28 0 0"
+                        Name="TaskStatus">
+                        <TextBlock 
+                            Text="{Binding Path=Status, Mode=OneWay}"
+                            TextAlignment="Center" />
+                    </materialDesign:Chip>
+
                     <Grid Name="mainGrid">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
@@ -81,19 +86,13 @@
                             <ColumnDefinition Width="50*"/>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Path=Description, Mode=OneWay}" />
-                        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
-                            <Label Content="Priority: " />
-                            <TextBlock Text="{Binding Path=Priority, Mode=OneWay}" VerticalAlignment="Center" />
-                        </StackPanel>
-                        <StackPanel Grid.Row="3" Grid.Column="0" Orientation="Horizontal">
-                            <Label Content="Status: " />
-                            <TextBlock Text="{Binding Path=Status, Mode=OneWay}" VerticalAlignment="Center" />
-                        </StackPanel>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Center" Margin="0, 0, 0, 10" Text="{Binding Path=Description, Mode=OneWay}" />
 
-                        <TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Path=DueDateReadable, Mode=OneWay}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Center" Text="{Binding Path=DueDateReadable, Mode=OneWay}" />
 
-                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
+                        <Separator Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
+                        
+                        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
                             <Button Name="btnComplete" Style="{StaticResource ButtonStyle}">
                                 <materialDesign:PackIcon Kind="Tick" />
                             </Button>
@@ -108,7 +107,7 @@
                 </StackPanel>
             </materialDesign:Card>
 
-            <!--<DataTemplate.Triggers>
+            <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=Priority}" Value="High">
                     <Setter Property="Background" TargetName="mainPanel" Value="#FFBABB" />
                 </DataTrigger>
@@ -118,16 +117,34 @@
                 <DataTrigger Binding="{Binding Path=Priority}" Value="Low">
                     <Setter Property="Background" TargetName="mainPanel" Value="#BFFFC1" />
                 </DataTrigger>
+                
                 <DataTrigger Binding="{Binding Path=IsComplete}" Value="true">
                     <Setter Property="Background" TargetName="mainPanel" Value="DarkGray" />
                     <Setter Property="Visibility" TargetName="mainGrid" Value="Collapsed" />
                 </DataTrigger>
-            </DataTemplate.Triggers>-->
+
+                <DataTrigger Binding="{Binding Path=Status}" Value="NotStarted">
+                    <Setter Property="Background" TargetName="TaskStatus" Value="#FF0099CB" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Status}" Value="Started">
+                    <Setter Property="Background" TargetName="TaskStatus" Value="Yellow" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Status}" Value="Paused">
+                    <Setter Property="Background" TargetName="TaskStatus" Value="Orange" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Status}" Value="Complete">
+                    <Setter Property="Background" TargetName="TaskStatus" Value="Green" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Status}" Value="Cancelled">
+                    <Setter Property="Background" TargetName="TaskStatus" Value="Red" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
         </DataTemplate>
     </Page.Resources>
 
     <Grid Name="mainGrid" Background="White">
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -280,6 +297,32 @@
                 <TextBlock Grid.Column="0" Text="Sunday" Style="{StaticResource DayText}" />
                 <ListBox Grid.Column="1" Name="sunList" ItemTemplate="{StaticResource TaskTemplate}" HorizontalContentAlignment="Stretch" SelectionChanged="DayList_SelectionChanged" />
             </Grid>
+        </Border>
+
+        <Border Padding="10" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Name="btnWeekBack2" Click="BtnWeekBack_Click" Style="{StaticResource NavButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ArrowLeftBold" />
+                        <TextBlock Margin="10, 0, 0, 0">Back</TextBlock>
+                    </StackPanel>
+                </Button>
+                <StackPanel>
+                    <TextBlock
+                        Name="lblWeekNum2"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        TextAlignment="Center"
+                        Margin="10, 0, 10, 0" />
+                </StackPanel>
+                <Button Name="btnWeekForward2" Click="BtnWeekForward_Click" Style="{StaticResource NavButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Margin="0, 0, 10, 0">Forward</TextBlock>
+                        <materialDesign:PackIcon Kind="ArrowRightBold" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
         </Border>
     </Grid>
 </Page>

@@ -88,7 +88,12 @@ namespace StudentPlanner.Models {
             }
         }
 
-        public string DueDateReadable { get { return DueDatetime.ToShortDateString(); } }
+        public string DueDateReadable { get {
+                int daysDiff = ((TimeSpan)(DueDatetime - DateTime.Now)).Days;
+                if (daysDiff > 0) return "Due in " + daysDiff + " days";
+                else return IsComplete ? "Complete": "Overdue";
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void RaisePropertyChanged(string propertyName) {
@@ -117,6 +122,7 @@ namespace StudentPlanner.Models {
         public void CompleteTask() {
             Status = Status.Complete;
             CompleteDatetime = DateTime.Now;
+            IsComplete = true;
             Toastr.Success("Complete", "The task has been marked as complete");
         }
 
