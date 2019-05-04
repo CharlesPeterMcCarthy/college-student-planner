@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class PaymentTask : Task {
-        //properties
-        public decimal Amount { get; set; }
+        private decimal _amount;
 
-        //referenced by the database
+        public decimal Amount {
+            get { return _amount; }
+            set { _amount = value; RaisePropertyChanged("Amount"); }
+        }
 
         public PaymentTask() { }
 

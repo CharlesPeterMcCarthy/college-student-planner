@@ -22,26 +22,54 @@ namespace StudentPlanner.Models {
     }
 
     public abstract class Task: INotifyPropertyChanged {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public Priority Priority { get; set; }
+        private string _title;
+        private string _description;
+        private Priority _priority;
         private Status _status;
+        private DateTime _dueDatetime;
+        private DateTime _createdDatetime;
+        private DateTime _completeDatetime;
+        private bool _isComplete;
+
+
+        public string Title {
+            get { return _title; }
+            set { _title = value; RaisePropertyChanged("Title"); }
+        }
+        public string Description {
+            get { return _description; }
+            set { _description = value; RaisePropertyChanged("Description"); }
+        }
+        public Priority Priority {
+            get { return _priority; }
+            set { _priority = value; RaisePropertyChanged("Priority"); }
+        }
         public Status Status {
             get { return _status; }
-            set {
-                _status = value;
-                RaisePropertyChanged("Status");
-            }
+            set { _status = value; RaisePropertyChanged("Status"); }
         }
-        public DateTime DueDatetime { get; set; }
-        public DateTime CreatedDatetime { get; set; }
-        public DateTime CompleteDatetime { get; set; }
+        public DateTime DueDatetime {
+            get { return _dueDatetime; }
+            set { _dueDatetime = value; RaisePropertyChanged("DueDatetime"); RaisePropertyChanged("DueDateReadable"); }
+        }
+        public DateTime CreatedDatetime {
+            get { return _createdDatetime; }
+            set { _createdDatetime = value; RaisePropertyChanged("CreatedDatetime"); }
+        }
+        public DateTime CompleteDatetime {
+            get { return _completeDatetime; }
+            set { _completeDatetime = value; RaisePropertyChanged("CompleteDatetime"); }
+        }
+        public bool IsComplete {
+            get { return _isComplete; }
+            set { _isComplete = value; RaisePropertyChanged("IsComplete"); }
+        }
+
         public string DueDateReadable { get { return DueDatetime.ToShortDateString(); } }
-        public bool IsComplete { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void RaisePropertyChanged(string propertyName) {
+        protected void RaisePropertyChanged(string propertyName) {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 

@@ -7,15 +7,30 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class ExamTask : Task, IStartableTask {
-        //properties
-        public string Subject { get; set; }
-        public int PercentageWorth { get; set; }
-        public List<string> MaterialsNeeded { get; set; }
-        public DateTime StartedDatetime { get; set; }
-        public string Materials { get { return string.Join(", ", MaterialsNeeded); }
-            set { this.MaterialsNeeded = value.Split(',').ToList(); } }
+        private string _subject;
+        private int _percentageWorth;
+        private List<string> _materialsNeeded;
+        private DateTime _startedDatetime;
 
-        //referenced by the database
+        public List<string> MaterialsNeeded {
+            get { return _materialsNeeded; }
+            set { _materialsNeeded = value; RaisePropertyChanged("MaterialsNeeded"); }
+        }
+        public string Materials { get { return string.Join(", ", MaterialsNeeded); }
+            set { this.MaterialsNeeded = value.Split(',').ToList(); RaisePropertyChanged("Materials"); } }
+
+        public string Subject {
+            get { return _subject; }
+            set { _subject = value; RaisePropertyChanged("Subject"); }
+        }
+        public int PercentageWorth {
+            get { return _percentageWorth; }
+            set { _percentageWorth = value; RaisePropertyChanged("PercentageWorth"); }
+        }
+        public DateTime StartedDatetime {
+            get { return _startedDatetime; }
+            set { _startedDatetime = value; RaisePropertyChanged("StartedDatetime"); }
+        }
 
         public ExamTask() { }
 

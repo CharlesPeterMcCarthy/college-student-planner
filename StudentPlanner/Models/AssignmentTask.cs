@@ -1,20 +1,34 @@
 ﻿using StudentPlanner.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class AssignmentTask : Task, IStartableTask, IPausableTask {
-        //properties
-        public string Subject { get; set; }
-        public int PercentageWorth { get; set; }
-        public DateTime PausedDatetime { get; set; }
-        public DateTime StartedDatetime { get; set; }
+        private string _subject;
+        private int _percentageWorth;
+        private DateTime _pausedDatetime;
+        private DateTime _startedDatetime;
 
-        //constructors
-        //referenced by the database
+        public string Subject {
+            get { return _subject; }
+            set { _subject = value; RaisePropertyChanged("Subject"); }
+        }
+        public int PercentageWorth {
+            get { return _percentageWorth; }
+            set { _percentageWorth = value; RaisePropertyChanged("PercentageWorth"); }
+        }
+        public DateTime PausedDatetime {
+            get { return _pausedDatetime; }
+            set { _pausedDatetime = value; RaisePropertyChanged("PausedDatetime"); }
+        }
+        public DateTime StartedDatetime {
+            get { return _startedDatetime; }
+            set { _startedDatetime = value; RaisePropertyChanged("StartedDatetime"); }
+        }
 
         public AssignmentTask() { }
 

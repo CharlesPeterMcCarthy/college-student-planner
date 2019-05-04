@@ -7,12 +7,22 @@ using System.Threading.Tasks;
 
 namespace StudentPlanner.Models {
     public class EventTask : Task, IStartableTask, IPausableTask {
-        //properties
-        public string Location { get; set; }
-        public DateTime StartedDatetime { get; set; }
-        public DateTime PausedDatetime { get; set; }
+        private string _location;
+        private DateTime _startedDatetime;
+        private DateTime _pausedDatetime;
 
-        //referenced by the database
+        public string Location {
+            get { return _location; }
+            set { _location = value; RaisePropertyChanged("Location"); }
+        }
+        public DateTime PausedDatetime {
+            get { return _pausedDatetime; }
+            set { _pausedDatetime = value; RaisePropertyChanged("PausedDatetime"); }
+        }
+        public DateTime StartedDatetime {
+            get { return _startedDatetime; }
+            set { _startedDatetime = value; RaisePropertyChanged("StartedDatetime"); }
+        }
 
         public EventTask() { }
 
@@ -30,8 +40,6 @@ namespace StudentPlanner.Models {
         {
             Location = location;
         }
-
-        // More constructors will probably be needed
 
         //methods
         public Status PauseTask() {
