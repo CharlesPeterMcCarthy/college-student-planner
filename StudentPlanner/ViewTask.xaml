@@ -145,6 +145,7 @@
                             Grid.Column="1"
                             Text="{Binding Path=PercentageWorth, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
+                            PreviewTextInput="NumberValidationTextBox"
                             materialDesign:HintAssist.Hint="Percentage" />
 
                         <TextBox
@@ -179,6 +180,7 @@
                             Grid.Column="1"
                             Text="{Binding Path=PercentageWorth, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
+                            PreviewTextInput="NumberValidationTextBox"
                             materialDesign:HintAssist.Hint="Percentage" />
                     </Grid>
                 </DataTemplate>
@@ -217,6 +219,7 @@
                             Grid.Column="1"
                             Text="{Binding Path=Amount, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
+                            PreviewTextInput="NumberValidationTextBox"
                             materialDesign:HintAssist.Hint="Amount" />
                     </Grid>
                 </DataTemplate>

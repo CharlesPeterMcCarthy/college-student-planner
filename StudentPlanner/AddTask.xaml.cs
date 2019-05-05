@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using MaterialDesignThemes.Wpf;
+using System.Windows.Input;
+using System.Text.RegularExpressions;
 
 namespace StudentPlanner {
     /// <summary>
@@ -86,8 +88,10 @@ namespace StudentPlanner {
                 return null;
             }
 
-            Models.Task newTask = null;
-            
+            Task newTask = null;
+
+            Toastr.TurnOffNotifications(); // Prevent multiple 'update' notifications
+
             DateTime now = DateTime.Now;
 
             switch (type) {
@@ -118,6 +122,8 @@ namespace StudentPlanner {
                     Toastr.Error("Error", "Invalid task type.");
                     break;
             }
+
+            Toastr.TurnOnNotifications();
 
             if (newTask != null) Toastr.Success("Created", "The '" + title + "' task has been created");
             
@@ -185,5 +191,11 @@ namespace StudentPlanner {
         private void GoBack_Click(object sender, RoutedEventArgs e) {
             NavigationService.Navigate(new MyPlanner());
         }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e) {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
     }
 }

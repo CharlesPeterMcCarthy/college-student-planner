@@ -216,7 +216,7 @@
             Grid.Column="1"
             Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
             HorizontalAlignment="Right"
-            Margin="0, 0, 5, 0"
+            Margin="0, -20, 5, 0"
             Name="AddTask" Click="AddTask_Click">
             <materialDesign:PackIcon
                 Kind="Plus"

@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "$type": "StudentPlanner.Models.AssignmentTask, StudentPlanner",
+    "Subject": "dskskldas",
+    "PercentageWorth": 43,
+    "PausedDatetime": "0001-01-01T00:00:00",
+    "StartedDatetime": "0001-01-01T00:00:00",
+    "Title": "kldsndjsa",
+    "Description": "dskljfksdjklalclka",
+    "Priority": 1,
+    "Status": 3,
+    "DueDatetime": "2019-05-05T23:59:59",
+    "CreatedDatetime": "2019-05-05T12:38:18.6327193+01:00",
+    "CompleteDatetime": "2019-05-05T12:45:07.4685964+01:00",
+    "IsComplete": true,
+    "DueDateReadable": "This task is Complete"
+  },
+  {
+    "$type": "StudentPlanner.Models.AssignmentTask, StudentPlanner",
+    "Subject": "l;ksdk;lfkdsjj",
+    "PercentageWorth": 43,
+    "PausedDatetime": "0001-01-01T00:00:00",
+    "StartedDatetime": "0001-01-01T00:00:00",
+    "Title": "lkdsfjdslkj",
+    "Description": "lkdsnkfjnsadkjfnsdkjkjkj",
+    "Priority": 1,
+    "Status": 0,
+    "DueDatetime": "2019-05-05T23:59:59",
+    "CreatedDatetime": "2019-05-05T12:45:01.7305597+01:00",
+    "CompleteDatetime": "0001-01-01T00:00:00",
+    "IsComplete": false,
+    "DueDateReadable": "This task is Overdue"
+  }
+]

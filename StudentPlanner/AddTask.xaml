@@ -135,6 +135,7 @@
                 Grid.Column="1"
                 Style="{StaticResource EditValue}"
                 materialDesign:HintAssist.Hint="Percentage"
+                PreviewTextInput="NumberValidationTextBox"
                 Name="tbxPercentage" />
         </Grid>
 
@@ -180,6 +181,7 @@
                 Grid.Column="1"
                 Style="{StaticResource EditValue}"
                 materialDesign:HintAssist.Hint="Percentage"
+                PreviewTextInput="NumberValidationTextBox"
                 Name="tbxPercentExam" />
 
             <TextBox
@@ -205,6 +207,7 @@
                 Grid.Column="1"
                 Style="{StaticResource EditValue}"
                 materialDesign:HintAssist.Hint="Amount"
+                PreviewTextInput="NumberValidationTextBox"
                 Name="tbxAmount" />
         </Grid>
 

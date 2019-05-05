@@ -15,6 +15,10 @@ namespace StudentPlanner.Models {
             notificationsOn = true;
         }
 
+        public static void TurnOffNotifications() {
+            notificationsOn = false;
+        }
+
         public static void Info(string title, string message) {
             if (!notificationsOn) return;
             DisplayToastrNotification(new NotificationContent { Title = title, Message = message, Type = NotificationType.Information });
