@@ -62,10 +62,14 @@
                     Mode="PrimaryMid"
                     Padding="16">
                     <StackPanel Orientation="Horizontal">
-                        <ToggleButton 
-                            Style="{DynamicResource MaterialDesignHamburgerToggleButton}"
+                        <Button
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                            Height="30"
+                            Padding="10, -5, 10, 0"
                             Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Left}" />
+                            CommandParameter="{x:Static Dock.Left}">
+                            <materialDesign:PackIcon Kind="HamburgerMenu" Width="40" Height="40" />
+                        </Button>
                         <TextBlock Name="tblkHeading" FontWeight="Bold" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="16 0 0 0" />
                     </StackPanel>
                 </materialDesign:ColorZone>

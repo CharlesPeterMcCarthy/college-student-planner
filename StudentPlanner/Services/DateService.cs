@@ -19,7 +19,6 @@ namespace StudentPlanner
         }
 
         public static bool DateAfterToday(DateTime dt) {
-            Console.WriteLine(dt);
             return dt >= DateTime.Now;
         }
 
