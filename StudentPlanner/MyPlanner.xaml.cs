@@ -29,12 +29,10 @@ namespace StudentPlanner {
 
         public MyPlanner() {
             InitializeComponent();
-        }
 
-        public MyPlanner(Planner p): this() {
-            Planner = p;
+            Planner = User.Planner;
 
-            WeekNum = Planner.Weeks[0].WeekNumber;
+            WeekNum = DateService.GetWeekNumber(DateTime.Now);
             DisplayThisWeeksTasks();
         }
 
@@ -47,7 +45,6 @@ namespace StudentPlanner {
             satList.ItemsSource = null;
             sunList.ItemsSource = null;
 
-            Console.WriteLine(WeekNum);
             if (WeekExists()) {
                 if (DayExists(DayOfWeek.Monday)) monList.ItemsSource = GetDayTasks(DayOfWeek.Monday);
                 if (DayExists(DayOfWeek.Tuesday)) tuesList.ItemsSource = GetDayTasks(DayOfWeek.Tuesday);
@@ -69,7 +66,6 @@ namespace StudentPlanner {
 
         private ObservableCollection<Task> GetDayTasks(DayOfWeek day) {
             ObservableCollection<Task> t = (Planner.Weeks.Find(w => w.WeekNumber == WeekNum).Days.Find(d => d.DayOfWeek == day)).Tasks;
-            Console.WriteLine(t);
             return t;
         }
 

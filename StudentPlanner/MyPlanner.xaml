@@ -77,7 +77,8 @@
                         Name="TaskStatus">
                         <TextBlock 
                             Text="{Binding Path=Status, Mode=OneWay}"
-                            TextAlignment="Center" />
+                            TextAlignment="Center"
+                            Name="TaskStatusText" />
                     </materialDesign:Chip>
 
                     <Grid Name="mainGrid">
@@ -112,13 +113,13 @@
                         <Separator Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignDarkSeparator}" />
                         
                         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="4">
-                            <Button Click="CompleteTask" Style="{StaticResource ButtonStyle}">
+                            <Button Click="CompleteTask" Style="{StaticResource ButtonStyle}" ToolTip="Complete Task">
                                 <materialDesign:PackIcon Kind="Tick" />
                             </Button>
-                            <Button Click="EditTask" Style="{StaticResource ButtonStyle}">
+                            <Button Click="EditTask" Style="{StaticResource ButtonStyle}" ToolTip="Edit Task">
                                 <materialDesign:PackIcon Kind="Edit" />
                             </Button>
-                            <Button Click="DeleteTask" Style="{StaticResource ButtonStyle}">
+                            <Button Click="DeleteTask" Style="{StaticResource ButtonStyle}" ToolTip="Delete Task">
                                 <materialDesign:PackIcon Kind="DeleteForever" />
                             </Button>
                         </StackPanel>
@@ -147,6 +148,7 @@
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Status}" Value="Started">
                     <Setter Property="Background" TargetName="TaskStatus" Value="Yellow" />
+                    <Setter Property="Foreground" TargetName="TaskStatus" Value="Black" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Status}" Value="Paused">
                     <Setter Property="Background" TargetName="TaskStatus" Value="Orange" />
@@ -179,7 +181,12 @@
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Padding="10" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+        <Border 
+            Padding="10"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            Margin="0, 0, 0, 20">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Name="btnWeekBack" Click="BtnWeekBack_Click" Style="{StaticResource NavButton}">
                     <StackPanel Orientation="Horizontal">
@@ -294,7 +301,12 @@
             </Grid>
         </Border>
 
-        <Border Padding="10" Grid.Row="9" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+        <Border
+            Padding="10" 
+            Grid.Row="9"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Stretch"
+            Margin="0, 20, 0, 0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button Name="btnWeekBack2" Click="BtnWeekBack_Click" Style="{StaticResource NavButton}">
                     <StackPanel Orientation="Horizontal">

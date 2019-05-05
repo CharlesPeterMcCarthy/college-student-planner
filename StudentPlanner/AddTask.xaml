@@ -59,6 +59,14 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
+        <Button 
+            HorizontalAlignment="Left"
+            Margin="10, 0, 0, 0"
+            Width="50"
+            Name="GoBack" Click="GoBack_Click">
+            <materialDesign:PackIcon x:Name="click" Kind="KeyboardBackspace" />
+        </Button>
+
         <ComboBox
             Grid.Row="0"
             Grid.Column="1"

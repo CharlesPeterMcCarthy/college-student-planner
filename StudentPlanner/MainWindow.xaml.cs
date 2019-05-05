@@ -16,14 +16,14 @@ namespace StudentPlanner {
             Toastr.TurnOnNotifications();
             Database.TurnOnSaving();
 
-            MyPlanner mp = new MyPlanner(User.Planner);
+            MyPlanner mp = new MyPlanner();
 
             SetheadingText("My Planner");
             mainFrame.NavigationService.Navigate(mp);
         }
 
         private void TblkPlanner_MouseDown(object sender, RoutedEventArgs e) {
-            MyPlanner mp = new MyPlanner(User.Planner);
+            MyPlanner mp = new MyPlanner();
 
             SetheadingText("My Planner");
             mainFrame.NavigationService.Navigate(mp);

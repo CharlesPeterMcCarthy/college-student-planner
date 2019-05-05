@@ -55,6 +55,7 @@ namespace StudentPlanner {
 
             try {
                 due = dueDate.SelectedDate.Value.Date;
+                due = due.Date + new TimeSpan(23, 59, 59);
             } catch (InvalidOperationException err) {
                 Toastr.Warning("Warning", "Please select a valid date");
                 return;
@@ -66,7 +67,7 @@ namespace StudentPlanner {
                 int weekNumber = DateService.GetWeekNumber(newTask.DueDatetime);
 
                 SaveNewTask(newTask, weekNumber);
-                NavigationService.Navigate(new MyPlanner(Planner));
+                NavigationService.Navigate(new MyPlanner());
             }
             else Toastr.Error("Error", "Failed to create new task");
         }
@@ -179,6 +180,10 @@ namespace StudentPlanner {
 
         private Week CreateNewWeek(int weekNumber) {
             return new Week(weekNumber);
+        }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new MyPlanner());
         }
     }
 }

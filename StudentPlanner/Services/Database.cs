@@ -11,8 +11,8 @@ namespace StudentPlanner {
 
     class Database {
 
-        private const string TASKS_FILE = "tasks.json";
-        private const string USER_FILE = "user.json";
+        private const string TASKS_FILE = "../../tasks.json";
+        private const string USER_FILE = "../../user.json";
         private static bool canSave = false;
 
         public static void TurnOnSaving() {
@@ -93,9 +93,7 @@ namespace StudentPlanner {
 
         public static void DeleteTask(Task t) {
             int weekNum = DateService.GetWeekNumber(t.DueDatetime);
-            Week week = User.Planner.Weeks.Find(w => w.WeekNumber == weekNum);
-            Day day = week.Days.Find(d => d.Date.Date == t.DueDatetime.Date);
-            day.Tasks.Remove(t);
+            User.Planner.Weeks.Find(w => w.WeekNumber == weekNum).Days.Find(d => d.Date.Date == t.DueDatetime.Date).Tasks.Remove(t);
             SaveTasks();
         }
     }

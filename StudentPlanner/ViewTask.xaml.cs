@@ -64,9 +64,12 @@ namespace StudentPlanner {
         }
 
         private void CompleteTask(object sender, RoutedEventArgs e) {
-
             Task.CompleteTask();
             UpdateButtonVisibility();
+        }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new MyPlanner());
         }
     }
 }

@@ -9,8 +9,7 @@ namespace StudentPlanner
 {
     class DateService
     {
-        //planner starts from 31/12/2018
-        //getting the week number relative to this
+
         public static int GetWeekNumber(DateTime time) {
             DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
 
@@ -19,9 +18,10 @@ namespace StudentPlanner
             return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
         }
 
-        public static bool DateAfterToday(DateTime dt)
-        {
+        public static bool DateAfterToday(DateTime dt) {
+            Console.WriteLine(dt);
             return dt >= DateTime.Now;
         }
+
     }
 }
