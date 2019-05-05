@@ -96,10 +96,8 @@ namespace StudentPlanner {
             NavigationService.Navigate(new ViewTask(GetClickedTask(sender)));
         }
 
-        private void DeleteTask(object sender, RoutedEventArgs e) {
-            Task t = GetClickedTask(sender);
-            Database.DeleteTask(t);
-            Toastr.Success("Deleted", "The task has been successfully deleted");
+        private void CancelTask(object sender, RoutedEventArgs e) {
+            GetClickedTask(sender).CancelTask();
         }
 
         private Task GetClickedTask(object elem) {

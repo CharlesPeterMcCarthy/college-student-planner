@@ -27,6 +27,7 @@ namespace StudentPlanner.Models {
         private DateTime _createdDatetime;
         private DateTime _completeDatetime;
         private bool _isComplete;
+        private bool _isCancelled;
 
         public string Title {
             get { return _title; }
@@ -86,10 +87,17 @@ namespace StudentPlanner.Models {
                 RaisePropertyChanged("IsComplete");
             }
         }
+        public bool IsCancelled {
+            get { return _isCancelled; }
+            set {
+                _isCancelled = value;
+                RaisePropertyChanged("IsCancelled");
+            }
+        }
 
         public string DueDateReadable { get {
                 int daysDiff = ((TimeSpan)(DueDatetime - DateTime.Now)).Days;
-                if (daysDiff > 0) return "Due in " + daysDiff + " days";
+                if (daysDiff > 0) return "Due in " + daysDiff + " day" + (daysDiff > 1 ? "s" : "");
                 else return "This task is " + (IsComplete ? "Complete": "Overdue");
             }
         }
@@ -128,6 +136,7 @@ namespace StudentPlanner.Models {
 
         public void CancelTask() {
             Status = Status.Cancelled;
+            IsCancelled = true;
             Toastr.Info("Cancelled", "The task has been cancelled");
         }
 

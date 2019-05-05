@@ -119,7 +119,7 @@
                             <Button Click="EditTask" Style="{StaticResource ButtonStyle}" ToolTip="Edit Task">
                                 <materialDesign:PackIcon Kind="Edit" />
                             </Button>
-                            <Button Click="DeleteTask" Style="{StaticResource ButtonStyle}" ToolTip="Delete Task">
+                            <Button Click="CancelTask" Style="{StaticResource ButtonStyle}" ToolTip="Delete Task">
                                 <materialDesign:PackIcon Kind="DeleteForever" />
                             </Button>
                         </StackPanel>
@@ -137,11 +137,6 @@
                 <DataTrigger Binding="{Binding Path=Priority}" Value="Low">
                     <Setter Property="Background" TargetName="mainPanel" Value="#BFFFC1" />
                 </DataTrigger>
-                
-                <DataTrigger Binding="{Binding Path=IsComplete}" Value="true">
-                    <Setter Property="Background" TargetName="mainPanel" Value="DarkGray" />
-                    <Setter Property="Visibility" TargetName="mainGrid" Value="Collapsed" />
-                </DataTrigger>
 
                 <DataTrigger Binding="{Binding Path=Status}" Value="NotStarted">
                     <Setter Property="Background" TargetName="TaskStatus" Value="#FF0099CB" />
@@ -154,9 +149,13 @@
                     <Setter Property="Background" TargetName="TaskStatus" Value="Orange" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Status}" Value="Complete">
+                    <Setter Property="Background" TargetName="mainPanel" Value="DarkGray" />
+                    <Setter Property="Visibility" TargetName="mainGrid" Value="Collapsed" />
                     <Setter Property="Background" TargetName="TaskStatus" Value="Green" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Path=Status}" Value="Cancelled">
+                    <Setter Property="Background" TargetName="mainPanel" Value="DarkGray" />
+                    <Setter Property="Visibility" TargetName="mainGrid" Value="Collapsed" />
                     <Setter Property="Background" TargetName="TaskStatus" Value="Red" />
                 </DataTrigger>
             </DataTemplate.Triggers>
