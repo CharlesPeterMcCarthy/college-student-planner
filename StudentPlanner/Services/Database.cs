@@ -90,5 +90,13 @@ namespace StudentPlanner {
                 }));
             }
         }
+
+        public static void DeleteTask(Task t) {
+            int weekNum = DateService.GetWeekNumber(t.DueDatetime);
+            Week week = User.Planner.Weeks.Find(w => w.WeekNumber == weekNum);
+            Day day = week.Days.Find(d => d.Date.Date == t.DueDatetime.Date);
+            day.Tasks.Remove(t);
+            SaveTasks();
+        }
     }
 }

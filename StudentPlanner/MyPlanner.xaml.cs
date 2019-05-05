@@ -1,19 +1,10 @@
 ﻿using StudentPlanner.Models;
+using StudentPlanner.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace StudentPlanner {
     /// <summary>
@@ -76,8 +67,8 @@ namespace StudentPlanner {
             return (Planner.Weeks.Find(w => w.WeekNumber == WeekNum).Days.Find(d => d.DayOfWeek == day) != null);
         }
 
-        private ObservableCollection<Models.Task> GetDayTasks(DayOfWeek day) {
-            ObservableCollection<Models.Task> t = (Planner.Weeks.Find(w => w.WeekNumber == WeekNum).Days.Find(d => d.DayOfWeek == day)).Tasks;
+        private ObservableCollection<Task> GetDayTasks(DayOfWeek day) {
+            ObservableCollection<Task> t = (Planner.Weeks.Find(w => w.WeekNumber == WeekNum).Days.Find(d => d.DayOfWeek == day)).Tasks;
             Console.WriteLine(t);
             return t;
         }
@@ -100,5 +91,26 @@ namespace StudentPlanner {
         private void AddTask_Click(object sender, RoutedEventArgs e) {
             NavigationService.Navigate(new AddTask(Planner));
         }
+
+        private void CompleteTask(object sender, RoutedEventArgs e) {
+            GetClickedTask(sender).CompleteTask();
+        }
+
+        private void EditTask(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new ViewTask(GetClickedTask(sender)));
+        }
+
+        private void DeleteTask(object sender, RoutedEventArgs e) {
+            Task t = GetClickedTask(sender);
+            Database.DeleteTask(t);
+            Toastr.Success("Deleted", "The task has been successfully deleted");
+        }
+
+        private Task GetClickedTask(object elem) {
+            ListBox listBox = Dependencies.GetParentOfType<ListBox>(elem as UIElement);
+            Task t = ((ListBoxItem)listBox.ContainerFromElement((Button)elem)).Content as Task;
+            return t;
+        }
+
     }
 }

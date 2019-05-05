@@ -84,14 +84,13 @@ namespace StudentPlanner.Models {
             set {
                 _isComplete = value;
                 RaisePropertyChanged("IsComplete");
-                Toastr.Success("Updated", "The task has been complete");
             }
         }
 
         public string DueDateReadable { get {
                 int daysDiff = ((TimeSpan)(DueDatetime - DateTime.Now)).Days;
                 if (daysDiff > 0) return "Due in " + daysDiff + " days";
-                else return IsComplete ? "Complete": "Overdue";
+                else return "This task is " + (IsComplete ? "Complete": "Overdue");
             }
         }
 
