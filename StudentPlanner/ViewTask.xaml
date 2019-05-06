@@ -86,7 +86,8 @@
                 Grid.Column="1"
                 Text="{Binding Path=Title, Mode=TwoWay}"
                 Style="{StaticResource EditValue}"
-                materialDesign:HintAssist.Hint="Title" />
+                materialDesign:HintAssist.Hint="Title"
+                Name="tbxTitle" />
             
             <TextBox
                 Grid.Row="1"
@@ -98,14 +99,16 @@
                 VerticalAlignment="Stretch"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"
-                SpellCheck.IsEnabled="True" />
+                SpellCheck.IsEnabled="True" 
+                Name="tbxDescription" />
 
             <DatePicker
                 Grid.Row="2"
                 Grid.Column="1"
                 SelectedDate="{Binding Path=DueDatetime, Mode=TwoWay}"
                 Style="{StaticResource EditDate}"
-                materialDesign:HintAssist.Hint="Due Date" />
+                materialDesign:HintAssist.Hint="Due Date"
+                Name="dpDueDate" />
 
             <ComboBox
                 Grid.Row="3"
@@ -138,7 +141,8 @@
                             Grid.Column="1"
                             Text="{Binding Path=Subject, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
-                            materialDesign:HintAssist.Hint="Subject" />
+                            materialDesign:HintAssist.Hint="Subject"
+                            Name="tbxExamSubject" />
 
                         <TextBox
                             Grid.Row="1"
@@ -146,14 +150,16 @@
                             Text="{Binding Path=PercentageWorth, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
                             PreviewTextInput="NumberValidationTextBox"
-                            materialDesign:HintAssist.Hint="Percentage" />
+                            materialDesign:HintAssist.Hint="Percentage"
+                            Name="tbxExamPercentage" />
 
                         <TextBox
                             Grid.Row="2"
                             Grid.Column="1"
                             Text="{Binding Path=Materials, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
-                            materialDesign:HintAssist.Hint="Materials Needed" />
+                            materialDesign:HintAssist.Hint="Materials Needed"
+                            Name="tbxExamMaterials" />
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:AssignmentTask}">
@@ -173,7 +179,8 @@
                             Grid.Column="1"
                             Text="{Binding Path=Subject, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
-                            materialDesign:HintAssist.Hint="Subject" />
+                            materialDesign:HintAssist.Hint="Subject"
+                            Name="tbxAssignmentSubject" />
 
                         <TextBox
                             Grid.Row="1"
@@ -181,7 +188,8 @@
                             Text="{Binding Path=PercentageWorth, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
                             PreviewTextInput="NumberValidationTextBox"
-                            materialDesign:HintAssist.Hint="Percentage" />
+                            materialDesign:HintAssist.Hint="Percentage"
+                            Name="tbxAssignmentPercentage" />
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:EventTask}">
@@ -200,7 +208,8 @@
                             Grid.Column="1"
                             Text="{Binding Path=Location, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
-                            materialDesign:HintAssist.Hint="Location" />
+                            materialDesign:HintAssist.Hint="Location"
+                            Name="tbxLocation" />
                     </Grid>
                 </DataTemplate>
                 <DataTemplate DataType="{x:Type models:PaymentTask}">
@@ -220,7 +229,8 @@
                             Text="{Binding Path=Amount, Mode=TwoWay}"
                             Style="{StaticResource EditValue}"
                             PreviewTextInput="NumberValidationTextBox"
-                            materialDesign:HintAssist.Hint="Amount" />
+                            materialDesign:HintAssist.Hint="Amount"
+                            Name="tbxAmount" />
                     </Grid>
                 </DataTemplate>
             </ContentControl.Resources>

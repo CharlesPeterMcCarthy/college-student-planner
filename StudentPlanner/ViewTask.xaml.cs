@@ -28,6 +28,7 @@ namespace StudentPlanner {
 
             UpdateButtonVisibility();
             SetComboBoxes();
+            DisableComplete();
         }
 
         private void SetComboBoxes() {
@@ -58,6 +59,17 @@ namespace StudentPlanner {
         private void CompleteTask(object sender, RoutedEventArgs e) {
             Task.CompleteTask();
             UpdateButtonVisibility();
+            DisableComplete();
+        }
+
+        private void DisableComplete() {
+            if (Task.Status == Status.Complete || Task.Status == Status.Cancelled) {
+                tbxTitle.IsEnabled = false;
+                tbxDescription.IsEnabled = false;
+                dpDueDate.IsEnabled = false;
+                cbxPriority.IsEnabled = false;
+                taskInfo.IsEnabled = false;
+            }
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e) {
