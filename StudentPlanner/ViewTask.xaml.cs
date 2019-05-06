@@ -17,8 +17,6 @@ namespace StudentPlanner {
 
         public ViewTask() {
             InitializeComponent();
-
-            SetComboBoxes();
         }
 
         public ViewTask(Task task): this() {
@@ -29,10 +27,12 @@ namespace StudentPlanner {
             taskInfo.Content = Task;
 
             UpdateButtonVisibility();
+            SetComboBoxes();
         }
 
         private void SetComboBoxes() {
             cbxPriority.ItemsSource = Enum.GetNames(typeof(Priority));
+            cbxPriority.SelectedValue = Task.Priority.ToString();
         }
 
         private void UpdateButtonVisibility() {
